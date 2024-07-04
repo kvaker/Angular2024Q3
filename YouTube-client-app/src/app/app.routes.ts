@@ -1,3 +1,8 @@
 import { Routes } from "@angular/router";
 
-export const routes: Routes = [];
+import { SearchResultsComponent } from "./search/search-results/search-results.component";
+
+export const routes: Routes = [
+    { path: "search", component: SearchResultsComponent },
+    { path: "", redirectTo: "/search", pathMatch: "full" }
+];
