@@ -57,7 +57,7 @@
           "double"
         ],
         "@typescript-eslint/no-shadow": "error",
-        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-explicit-any": 1,
         // Angular ESLint rules
         "@angular-eslint/directive-selector": [
           "error",
