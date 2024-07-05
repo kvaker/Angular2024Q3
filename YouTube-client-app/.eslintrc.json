@@ -8,7 +8,7 @@
     "simple-import-sort"
   ],
   "parserOptions": {
-    "project": "./YouTube-client-app/tsconfig.json"
+    "project": "./tsconfig.json"
   },
   "overrides": [
     {
