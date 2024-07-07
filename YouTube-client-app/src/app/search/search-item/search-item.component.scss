@@ -6,14 +6,23 @@
 }
 
 .card {
-  width: 300px;
+  width: 263px;
   margin: 20px;
+  background-color:#E5E5E5;
+  border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
-  width: 100%;
-  height: 200px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 223px;
+  height: 123px;
+  left: 20px;
+  top: 20px;
+  margin-bottom: 20px;
   object-fit: cover;
 }
 
@@ -22,7 +31,7 @@
 }
 
 .card-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -32,20 +41,88 @@
   margin-bottom: 10px;
 }
 
-.card-price {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 20px;
+.card-statistics {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-top: 10px;
 }
 
 .card-button {
-  background-color: #007bff;
+  position: relative;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  background-color: #2F80ED;
   color: #fff;
-  padding: 10px 20px;
+  padding: 10px 50px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+filter: drop-shadow(2px 0px 4px #2F80ED);
+
 }
 
 .card-button:hover {
   background-color: #0056b3;
+}
+.card-color{
+  width: 100%;
+  height: 5px;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.icon-viewed {
+  position: relative;
+  transform: translateY(-50%);
+  width: 13px;
+  height: 13px;
+}
+
+.icon-liked {
+  position: relative;
+  transform: translateY(-50%);
+  width: 13px;
+  height: 13px;
+}
+
+.icon-disliked {
+  position: relative;
+  transform: translateY(-50%);
+  width: 13px;
+  height: 13px;
+}
+
+.icon-comments {
+  position: relative;
+  transform: translateY(-50%);
+  width: 13px;
+  height: 13px;
+}
+
+.text-viewed,
+.text-liked,
+.text-disliked,
+.text-comments {
+  position: relative;
+  transform: translateY(-50%);
+  font-family: 'Roboto';
+  font-size: 10px;
+  color: #000000;
+}
+
+.text-viewed {
+  position: relative;
+}
+
+.text-liked {
+  position: relative;
+}
+
+.text-disliked {
+  position: relative;
+}
+
+.text-comments {
+  position: relative;
 }
