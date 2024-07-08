@@ -30,9 +30,9 @@
     <div class="container-sort">
       <div class="sort-buttons">
         <p class="sort-title">Sorting by:</p>
-        <div class="sort-button" data-sort-by="date">date</div>
-        <div class="sort-button" data-sort-by="count-of-views">count of views</div>
-        <div class="sort-button" data-sort-by="word-or-sentence">by word or sentance</div>
+        <div class="sort-button" (click)="setSortByField('date')">date</div>
+  <div class="sort-button" (click)="setSortByField('count-of-views')">count of views</div>
+  <div class="sort-button" (click)="setSortByField('word-or-sentence')">by word or sentence</div>
         <input type="text" class="word-sentence" placeholder="">
       </div>
     </div>
