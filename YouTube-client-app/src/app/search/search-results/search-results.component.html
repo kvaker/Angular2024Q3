@@ -2,10 +2,7 @@
 
 <section class="card-board" *ngIf="searchResults && searchResults.items?.length">
   <div class="card-container">
-    <app-search-item
-      *ngFor="let item of searchResults.items"
-      class="card"
-      [searchItem]="item">
+    <app-search-item *ngFor="let item of searchResults.items" class="card" [searchItem]="item">
     </app-search-item>
   </div>
 </section>

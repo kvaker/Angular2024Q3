@@ -4,5 +4,5 @@ import { SearchResultsComponent } from "./search/search-results/search-results.c
 
 export const routes: Routes = [
     { path: "search", component: SearchResultsComponent },
-    { path: "", redirectTo: "/search", pathMatch: "full" }
+    { path: "", redirectTo: "/search", pathMatch: "full" },
 ];
