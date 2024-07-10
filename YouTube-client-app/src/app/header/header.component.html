@@ -74,7 +74,7 @@
         <div class="sort-button" (click)="setSortByField('word-or-sentence')">
           by word or sentence
         </div>
-        <input type="text" class="word-sentence" placeholder="" />
+        <input type="text" class="word-sentence" placeholder="" (input)="onSearch($event)" />
       </div>
     </div>
   </div>
