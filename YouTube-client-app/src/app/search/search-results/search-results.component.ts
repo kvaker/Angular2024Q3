@@ -21,12 +21,15 @@ export class SearchResultsComponent implements OnInit {
         items: [],
     };
 
+    filteredResults = this.searchResults.items;
+
     constructor(private dataService: SearchDataService) {}
 
     ngOnInit(): void {
         SearchDataService.getMockSearchResults().subscribe(
             (data: SearchResponse) => {
                 this.searchResults = data;
+                this.filteredResults = data.items;
                 // eslint-disable-next-line no-console
                 console.log("Received search results:", this.searchResults);
             },
@@ -63,10 +66,10 @@ export class SearchResultsComponent implements OnInit {
             if (
                 a.statistics
         && b.statistics
-        && typeof a.statistics.viewCount === "number"
-        && typeof b.statistics.viewCount === "number"
+        && typeof Number(a.statistics.viewCount) === "number"
+        && typeof Number(b.statistics.viewCount) === "number"
             ) {
-                return b.statistics.viewCount - a.statistics.viewCount;
+                return Number(b.statistics.viewCount) - Number(a.statistics.viewCount);
             }
             return 0;
         });
@@ -74,6 +77,14 @@ export class SearchResultsComponent implements OnInit {
 
     sortByWordOrSentence() {
         this.searchResults.items.sort((a, b) => a.snippet.title.localeCompare(b.snippet.title));
+    }
+
+    onSearch(searchTerm: string) {
+        const searchTermLower = searchTerm.toLowerCase();
+        this.filteredResults = this.searchResults.items.filter(
+            (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
+        || item.snippet.description.toLowerCase().includes(searchTermLower),
+        );
     }
 
     // sortSearchResults(): void {

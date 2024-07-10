@@ -8,9 +8,15 @@ import { Component, EventEmitter, Output } from "@angular/core";
     styleUrl: "./header.component.scss",
 })
 export class HeaderComponent {
-    @Output() sortByChanged: EventEmitter<string> = new EventEmitter<string>();
+    @Output() sortByChanged = new EventEmitter<string>();
+    @Output() searchTermChanged = new EventEmitter<string>();
 
     setSortByField(field: string) {
         this.sortByChanged.emit(field);
+    }
+
+    onSearch(event: Event) {
+        const input = event.target as HTMLInputElement;
+        this.searchTermChanged.emit(input.value);
     }
 }
