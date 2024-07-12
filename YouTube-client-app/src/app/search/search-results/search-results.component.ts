@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
 import { HeaderComponent } from "../../header/header.component";
 import { SearchDataService } from "../search-data.service";
@@ -23,10 +24,10 @@ export class SearchResultsComponent implements OnInit {
 
     filteredResults = this.searchResults.items;
 
-    constructor(private dataService: SearchDataService) {}
+    constructor(private dataService: SearchDataService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-        SearchDataService.getMockSearchResults().subscribe(
+        this.dataService.getMockSearchResults().subscribe(
             (data: SearchResponse) => {
                 this.searchResults = data;
                 this.filteredResults = data.items;
@@ -51,7 +52,7 @@ export class SearchResultsComponent implements OnInit {
     }
 
     sortByDate() {
-        this.searchResults.items.sort((a, b) => {
+        this.filteredResults.sort((a, b) => {
             if (a.snippet.publishedAt && b.snippet.publishedAt) {
                 return (
                     new Date(a.snippet.publishedAt).getTime() - new Date(b.snippet.publishedAt).getTime()
@@ -62,12 +63,12 @@ export class SearchResultsComponent implements OnInit {
     }
 
     sortByViewsCount() {
-        this.searchResults.items.sort((a, b) => {
+        this.filteredResults.sort((a, b) => {
             if (
                 a.statistics
-        && b.statistics
-        && typeof Number(a.statistics.viewCount) === "number"
-        && typeof Number(b.statistics.viewCount) === "number"
+                && b.statistics
+                && typeof Number(a.statistics.viewCount) === "number"
+                && typeof Number(b.statistics.viewCount) === "number"
             ) {
                 return Number(b.statistics.viewCount) - Number(a.statistics.viewCount);
             }
@@ -76,14 +77,14 @@ export class SearchResultsComponent implements OnInit {
     }
 
     sortByWordOrSentence() {
-        this.searchResults.items.sort((a, b) => a.snippet.title.localeCompare(b.snippet.title));
+        this.filteredResults.sort((a, b) => a.snippet.title.localeCompare(b.snippet.title));
     }
 
     onSearch(searchTerm: string) {
         const searchTermLower = searchTerm.toLowerCase();
         this.filteredResults = this.searchResults.items.filter(
             (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
-        || item.snippet.description.toLowerCase().includes(searchTermLower),
+                || item.snippet.description.toLowerCase().includes(searchTermLower),
         );
     }
 

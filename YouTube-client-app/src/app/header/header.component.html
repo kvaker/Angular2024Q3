@@ -28,8 +28,8 @@
             />
           </svg>
         </div>
-        <form action="#">
-          <input type="text" placeholder="Search" />
+        <form (submit)="onSearch($event)">
+          <input type="text" placeholder="Search" (input)="onSearch($event)" />
           <button type="submit">search</button>
           <button class="options">
             <svg
