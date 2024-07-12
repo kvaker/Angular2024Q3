@@ -27,14 +27,14 @@ export class SearchResultsComponent implements OnInit {
     constructor(private dataService: SearchDataService, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
-        this.dataService.getMockSearchResults().subscribe(
+        SearchDataService.getMockSearchResults().subscribe(
             (data: SearchResponse) => {
                 this.searchResults = data;
                 this.filteredResults = data.items;
                 // eslint-disable-next-line no-console
                 console.log("Received search results:", this.searchResults);
             },
-            (error) => {
+            (error: unknown) => {
                 // eslint-disable-next-line no-console
                 console.error("Error fetching search results", error);
             },
