@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
 
-import { SearchResponse } from "./search-response.model";
+import { SearchResponse } from "../models/search-response.model";
 
 @Injectable({
     providedIn: "root",
@@ -466,7 +466,7 @@ export class SearchDataService {
                             title: "What is Angular? (Explained for Beginners)",
                             description:
                 `When you're just starting out you are probably wondering "What is Angular exactly? "
-                + "When you ask that question it leads to a lot of concepts " + 
+                + "When you ask that question it leads to a lot of concepts " +
                 "that are over your head and don't make sense. "
                 + "https://andysterkowitz.com/report`,
                         },

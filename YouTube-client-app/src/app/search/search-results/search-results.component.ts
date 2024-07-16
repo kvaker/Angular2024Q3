@@ -2,10 +2,10 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-import { HeaderComponent } from "../../header/header.component";
-import { SearchDataService } from "../search-data.service";
+import { HeaderComponent } from "../../core/components/header/header.component";
+import { SearchResponse } from "../models/search-response.model";
 import { SearchItemComponent } from "../search-item/search-item.component";
-import { SearchResponse } from "../search-response.model";
+import { SearchDataService } from "../services/search-data.service";
 
 @Component({
     selector: "app-search-results",
