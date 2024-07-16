@@ -31,7 +31,7 @@
         <form (submit)="onSearch($event)">
           <input type="text" placeholder="Search" (input)="onSearch($event)" />
           <button type="submit">search</button>
-          <button class="options">
+          <button class="options" (click)="toggleHeaderBottom()">
             <svg
               width="16"
               height="16"
@@ -65,7 +65,7 @@
       </svg>
     </div>
   </div>
-  <div class="header-bottom">
+  <div class="header-bottom" *ngIf="showBottomHeader">
     <div class="container-sort">
       <div class="sort-buttons">
         <p class="sort-title">Sorting by:</p>

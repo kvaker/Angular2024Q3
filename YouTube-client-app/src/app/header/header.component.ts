@@ -11,6 +11,11 @@ import { Component, EventEmitter, Output } from "@angular/core";
 export class HeaderComponent {
     @Output() sortByChanged = new EventEmitter<string>();
     @Output() searchTermChanged: EventEmitter<string> = new EventEmitter<string>();
+    showBottomHeader: boolean = false;
+
+    toggleHeaderBottom() {
+        this.showBottomHeader = !this.showBottomHeader;
+    }
 
     setSortByField(field: string) {
         this.sortByChanged.emit(field);
