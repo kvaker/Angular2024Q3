@@ -4,7 +4,9 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app.routes";
-import { LoginComponent } from "./auth/login/login.component";
+import { LoginComponent } from "./auth/pages/login/login.component";
+import { AuthService } from "./auth/services/auth.service";
+import { AuthGuard } from "./core/components/guards/auth.guard";
 import { HeaderComponent } from "./core/components/header/header.component";
 import { SearchModule } from "./search/search.module";
 import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-page.component";
@@ -12,7 +14,7 @@ import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-
 @NgModule({
     declarations: [AppComponent, LoginComponent, HeaderComponent, NotFoundPageComponent],
     imports: [BrowserModule, FormsModule, SearchModule, AppRoutingModule],
-    providers: [],
+    providers: [AuthService, AuthGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

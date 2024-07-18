@@ -27,9 +27,10 @@
 }
 
 .login-input {
-  width: 100%;
+  width: 92%;
   height: 40px;
   margin-bottom: 20px;
+  margin-right: 26px;
   border: 1px solid #E0E0E0;
   border-radius: 5px;
   padding: 0 10px;
@@ -40,12 +41,13 @@
 
 .button-container {
   display: flex;
-  justify-content: center;
+  justify-content: right;
 }
 
 .button {
-  width: 100%;
+  width: 124px;
   height: 40px;
+  margin-left: 14px;
   background: #2F80ED;
   color: #FFFFFF;
   border: none;
