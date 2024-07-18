@@ -1,0 +1,16 @@
+<div class="login-container">
+  <div class="text">Login</div>
+
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value.username, loginForm.value.password)" class="login-form">
+    <input type="text" id="username" name="username" ngModel required placeholder="Username" class="login-input">
+    <input type="password" id="password" name="password" ngModel required placeholder="Password" class="login-input">
+
+    <div class="button-container">
+      <button type="submit" class="button">Login</button>
+    </div>
+  </form>
+
+  <div class="registration">
+    <a href="#">Registration</a>
+  </div>
+</div>
