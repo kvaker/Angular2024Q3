@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: "root"
@@ -6,18 +7,20 @@ import { Injectable } from "@angular/core";
 export class AuthService {
     private isAuthenticated = false;
 
+    constructor(private router: Router) {}
+
     login(username: string, password: string): void {
-        if (username === "user" && password === "password") {
+        if (username && password) {
             this.isAuthenticated = true;
             localStorage.setItem("fakeToken", "dummy_token");
-            window.location.href = "/home";
+            this.router.navigate(["/"]);
         }
     }
 
     logout(): void {
         this.isAuthenticated = false;
         localStorage.removeItem("fakeToken");
-        window.location.href = "/login";
+        this.router.navigate(["/login"]);
     }
 
     isLoggedIn(): boolean {

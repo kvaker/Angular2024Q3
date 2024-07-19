@@ -14,6 +14,9 @@ import { AuthService } from "../../services/auth.service";
     styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent {
+    username: string = "";
+    password: string = "";
+
     constructor(private authService: AuthService) {}
 
     login(username: string, password: string): void {
