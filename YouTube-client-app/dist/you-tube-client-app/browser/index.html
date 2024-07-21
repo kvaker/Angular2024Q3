@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <title>YouTubeClientApp</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css"><style ng-app-id="ng">
+
+.login-container[_ngcontent-ng-c3869352061] {
+  position: absolute;
+  width: 344px;
+  height: 248px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  background: #e5e5e5;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+.text[_ngcontent-ng-c3869352061] {
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+.login-form[_ngcontent-ng-c3869352061] {
+  display: flex;
+  flex-direction: column;
+}
+.login-input[_ngcontent-ng-c3869352061] {
+  width: 92%;
+  height: 40px;
+  margin-bottom: 20px;
+  margin-right: 26px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-family: "Roboto";
+  font-size: 14px;
+  line-height: 16px;
+}
+.button-container[_ngcontent-ng-c3869352061] {
+  display: flex;
+  justify-content: right;
+}
+.button[_ngcontent-ng-c3869352061] {
+  width: 124px;
+  height: 40px;
+  margin-left: 14px;
+  background: #2f80ed;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.button[_ngcontent-ng-c3869352061]:hover {
+  background: #1366d6;
+}
+.registration[_ngcontent-ng-c3869352061] {
+  font-family: "Roboto";
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: #2f80ed;
+  margin-top: 10px;
+}
+/*# sourceMappingURL=login.component.css.map */</style><style ng-app-id="ng">
+
+header[_ngcontent-ng-c3384728022] {
+  background: #e5e5e5;
+  position: relative;
+  width: 100%;
+  height: 80px;
+  padding: 40px 0 10px;
+  margin-bottom: 30px;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+header[_ngcontent-ng-c3384728022]   .header-nav[_ngcontent-ng-c3384728022] {
+  display: flex;
+  width: 1200px;
+  margin: auto;
+  justify-content: space-around;
+  align-items: center;
+}
+header[_ngcontent-ng-c3384728022]   .header-item[_ngcontent-ng-c3384728022] {
+  display: flex;
+  width: 570px;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+header[_ngcontent-ng-c3384728022]   .container-search[_ngcontent-ng-c3384728022] {
+  display: flex;
+  width: 570px;
+  justify-content: center;
+  align-items: center;
+}
+header[_ngcontent-ng-c3384728022]   .logo[_ngcontent-ng-c3384728022] {
+  position: relative;
+  display: flex;
+  width: 50px;
+  height: 50px;
+}
+header[_ngcontent-ng-c3384728022]   form[_ngcontent-ng-c3384728022] {
+  display: flex;
+  align-items: center;
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #e5e5e5;
+  border-radius: 5px;
+}
+header[_ngcontent-ng-c3384728022]   form[_ngcontent-ng-c3384728022]   input[type=text][_ngcontent-ng-c3384728022] {
+  flex: 1;
+  padding: 8.5px;
+  border: 0px solid #4f4f4f;
+  border-radius: 5px 0 0 5px;
+  font-size: 16px;
+}
+header[_ngcontent-ng-c3384728022]   form[_ngcontent-ng-c3384728022]   button[type=submit][_ngcontent-ng-c3384728022] {
+  padding: 10px 20px;
+  background-color: #2f80ed;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+header[_ngcontent-ng-c3384728022]   form[_ngcontent-ng-c3384728022]   button[type=submit][_ngcontent-ng-c3384728022]:hover {
+  background-color: #1366d6;
+}
+header[_ngcontent-ng-c3384728022]   button[_ngcontent-ng-c3384728022] {
+  padding: 10px 15px;
+  background-color: #2f80ed;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  filter: drop-shadow(2px 2px 4px rgba(47, 128, 237, 0.25));
+}
+header[_ngcontent-ng-c3384728022]   button[_ngcontent-ng-c3384728022]:hover {
+  background-color: #1366d6;
+}
+header[_ngcontent-ng-c3384728022]   .options[_ngcontent-ng-c3384728022] {
+  width: 24px;
+  height: 24px;
+  display: block;
+  padding: 0;
+  margin-left: 14.5px;
+}
+header[_ngcontent-ng-c3384728022]   form[_ngcontent-ng-c3384728022] {
+  display: flex;
+  align-items: center;
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px;
+  background-color: #e5e5e5;
+  border-radius: 5px;
+}
+header[_ngcontent-ng-c3384728022]   form[_ngcontent-ng-c3384728022]   input[type=text][_ngcontent-ng-c3384728022] {
+  flex: 1;
+  padding: 4.5px;
+  border: 0px solid #4f4f4f;
+  border-radius: 5px 0 0 5px;
+  font-size: 16px;
+}
+header[_ngcontent-ng-c3384728022]   form[_ngcontent-ng-c3384728022]   input[type=text][_ngcontent-ng-c3384728022]:focus {
+  background-color: #efefef;
+}
+header[_ngcontent-ng-c3384728022]   form[_ngcontent-ng-c3384728022]   button[type=submit][_ngcontent-ng-c3384728022] {
+  padding: 5px 20px;
+  background-color: #2f80ed;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  filter: drop-shadow(2px 2px 4px rgba(47, 128, 237, 0.25));
+}
+header[_ngcontent-ng-c3384728022]   form[_ngcontent-ng-c3384728022]   button[type=submit][_ngcontent-ng-c3384728022]:hover {
+  background-color: #1366d6;
+}
+header[_ngcontent-ng-c3384728022]   .account[_ngcontent-ng-c3384728022] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 114px;
+  height: 24px;
+  cursor: pointer;
+  filter: drop-shadow(2px 2px 4px rgba(47, 128, 237, 0.25));
+}
+.header-bottom[_ngcontent-ng-c3384728022] {
+  background-color: #e5e5e5;
+  padding: 10px 0;
+  width: 100%;
+}
+.sort-title[_ngcontent-ng-c3384728022] {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #929292;
+}
+.container-sort[_ngcontent-ng-c3384728022] {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.sort-buttons[_ngcontent-ng-c3384728022] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  gap: 20px;
+}
+.sort-button[_ngcontent-ng-c3384728022] {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #2f80ed;
+  cursor: pointer;
+}
+.word-sentence[_ngcontent-ng-c3384728022] {
+  width: 149px;
+  height: 13px;
+  border: 0px solid #4f4f4f;
+  border-radius: 2px;
+  background: #ffffff;
+}
+.word-sentence[_ngcontent-ng-c3384728022]:focus {
+  background-color: #efefef;
+}
+.sort-button[_ngcontent-ng-c3384728022]:hover {
+  color: #1366d6;
+}
+/*# sourceMappingURL=header.component.css.map */</style></head>
+  <body><!--nghm-->
+    <app-root _nghost-ng-c3984273398="" ng-version="18.0.5" ngh="2" ng-server-context="ssg"><router-outlet _ngcontent-ng-c3984273398=""></router-outlet><app-login _nghost-ng-c3869352061="" ngh="1"><app-header _ngcontent-ng-c3869352061="" _nghost-ng-c3384728022="" ngh="0"><header _ngcontent-ng-c3384728022=""><div _ngcontent-ng-c3384728022="" class="header-nav"><div _ngcontent-ng-c3384728022="" class="header-item"><div _ngcontent-ng-c3384728022="" class="container-search"><div _ngcontent-ng-c3384728022="" class="logo"><svg _ngcontent-ng-c3384728022="" version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 576 512" xml:space="preserve" style="enable-background: new 0 0 576 512;"><style _ngcontent-ng-c3384728022="" type="text/css"> .st0 { fill: #2f80ed; } </style><path _ngcontent-ng-c3384728022="" d="M549.7,124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8,64,288,64,288,64S117.2,64,74.6,75.5
+   c-23.5,6.3-42,24.9-48.3,48.6C14.9,167,14.9,256.4,14.9,256.4s0,89.4,11.4,132.3c6.3,23.7,24.8,41.5,48.3,47.8
+   C117.2,448,288,448,288,448s170.8,0,213.4-11.5c23.5-6.3,42-24.2,48.3-47.8c11.4-42.9,11.4-132.3,11.4-132.3S561.1,167,549.7,124.1
+   L549.7,124.1z M232.2,337.6V175.2l142.7,81.2L232.2,337.6L232.2,337.6z" class="st0"></path></svg></div><form _ngcontent-ng-c3384728022=""><input _ngcontent-ng-c3384728022="" type="text" placeholder="Search"><button _ngcontent-ng-c3384728022="" type="submit">search</button><button _ngcontent-ng-c3384728022="" class="options"><svg _ngcontent-ng-c3384728022="" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-ng-c3384728022="" d="M9.5613 13.1136C9.78485 12.5128 10.2933 12.0909 10.8846 12.0909C11.476 12.0909 11.9844 12.5128 12.2079 13.1136H14.9231C15.2404 13.1136 15.5 13.4205 15.5 13.7955C15.5 14.1705 15.2404 14.4773 14.9231 14.4773H12.2079C11.9844 15.0781 11.476 15.5 10.8846 15.5C10.2933 15.5 9.78485 15.0781 9.5613 14.4773H1.07692C0.759615 14.4773 0.5 14.1705 0.5 13.7955C0.5 13.4205 0.759615 13.1136 1.07692 13.1136H9.5613ZM3.79207 7.31818C4.01563 6.71733 4.52404 6.29545 5.11538 6.29545C5.70673 6.29545 6.21514 6.71733 6.4387 7.31818H14.9231C15.2404 7.31818 15.5 7.625 15.5 8C15.5 8.375 15.2404 8.68182 14.9231 8.68182H6.4387C6.21514 9.28267 5.70673 9.70455 5.11538 9.70455C4.52404 9.70455 4.01563 9.28267 3.79207 8.68182H1.07692C0.759615 8.68182 0.5 8.375 0.5 8C0.5 7.625 0.759615 7.31818 1.07692 7.31818H3.79207ZM9.5613 1.52273C9.78485 0.921875 10.2933 0.5 10.8846 0.5C11.476 0.5 11.9844 0.921875 12.2079 1.52273H14.9231C15.2404 1.52273 15.5 1.82955 15.5 2.20455C15.5 2.57955 15.2404 2.88636 14.9231 2.88636H12.2079C11.9844 3.48722 11.476 3.90909 10.8846 3.90909C10.2933 3.90909 9.78485 3.48722 9.5613 2.88636H1.07692C0.759615 2.88636 0.5 2.57955 0.5 2.20455C0.5 1.82955 0.759615 1.52273 1.07692 1.52273H9.5613Z" fill="white"></path></svg></button></form></div></div><button _ngcontent-ng-c3384728022="" class="sort-button">Logout</button><div _ngcontent-ng-c3384728022="" class="account"> Your Name<svg _ngcontent-ng-c3384728022="" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path _ngcontent-ng-c3384728022="" fill-rule="evenodd" clip-rule="evenodd" d="M24 5C24 2.23858 21.7614 0 19 0H5C2.23858 0 0 2.23858 0 5V19C0 21.7614 2.23858 24 5 24H19C21.7614 24 24 21.7614 24 19V5ZM2.39993 12C2.39993 6.72 6.71993 2.4 11.9999 2.4C17.2799 2.4 21.5999 6.72 21.5999 12C21.5999 17.28 17.2799 21.6 11.9999 21.6C6.71993 21.6 2.39993 17.28 2.39993 12ZM14.8799 8.16C14.8799 6.57692 13.583 5.28 11.9999 5.28C10.4169 5.28 9.11993 6.57692 9.11993 8.16C9.11993 9.74307 10.4169 11.04 11.9999 11.04C13.583 11.04 14.8799 9.74307 14.8799 8.16ZM6.99188 14.7033C6.20027 15.3868 6.52028 16.5762 7.28858 17.2858C8.52571 18.4285 10.1806 19.1446 11.9999 19.1446C13.8176 19.1446 15.4711 18.4272 16.7078 17.2871C17.4783 16.5769 17.7993 15.3852 17.0055 14.7012C15.7911 13.6546 13.3984 13.0938 11.9999 13.0938C10.6005 13.0938 8.20552 13.6553 6.99188 14.7033Z" fill="#2F80ED"></path></svg></div></div><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></header></app-header><div _ngcontent-ng-c3869352061="" class="login-container"><div _ngcontent-ng-c3869352061="" class="text">Login</div><form _ngcontent-ng-c3869352061="" novalidate="" class="login-form ng-untouched ng-pristine ng-invalid"><input _ngcontent-ng-c3869352061="" type="text" ngmodel="" name="username" required="" placeholder="Username" class="login-input ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-model="" ng-reflect-name="username" value=""><input _ngcontent-ng-c3869352061="" type="password" ngmodel="" name="password" required="" placeholder="Password" class="login-input ng-untouched ng-pristine ng-invalid" ng-reflect-required="" ng-reflect-model="" ng-reflect-name="password" value=""><div _ngcontent-ng-c3869352061="" class="button-container"><div _ngcontent-ng-c3869352061="" class="registration"><a _ngcontent-ng-c3869352061="" href="#">Registration</a></div><button _ngcontent-ng-c3869352061="" type="submit" class="button">Login</button></div></form></div></app-login><!--container--></app-root>
+  <script src="polyfills.js" type="module"></script><script src="main.js" type="module"></script>
+
+<script id="ng-state" type="application/json">{"__nghData__":[{"t":{"22":"t0"},"c":{"22":[]}},{},{"c":{"0":[{"i":"c3869352061","r":1}]}}]}</script></body></html>

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/youtube/pages/not-found-page/not-found-page.component.scss"],
+  "sourcesContent": [".not-found-body {\r\n  width: 100%;\r\n  height: 100%;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  display: flex;\r\n  overflow: auto;\r\n  z-index: 0;\r\n}\r\n.not-found-item {\r\n  margin: auto;\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content:center;\r\n  align-items: center;\r\n}\r\n.not-found-logo {\r\nwidth: 99.72px;\r\nheight: 100px;\r\nmargin-right: 27px;\r\n}\r\n.not-found-text {\r\nfont-family: 'Roboto';\r\nfont-style: normal;\r\nfont-weight: 700;\r\nfont-size: 24px;\r\nline-height: 28px;\r\ndisplay: flex;\r\nalign-items: center;\r\ncolor: #828282;\r\n}\r\n"],
+  "mappings": ";AAAA,CAAA;AACE,SAAA;AACA,UAAA;AACA,YAAA;AACA,OAAA;AACA,QAAA;AACA,WAAA;AACA,YAAA;AACA,WAAA;;AAEF,CAAA;AACE,UAAA;AACA,WAAA;AACA,kBAAA;AACA,mBAAA;AACA,eAAA;;AAEF,CAAA;AACA,SAAA;AACA,UAAA;AACA,gBAAA;;AAEA,CAAA;AACA,eAAA;AACA,cAAA;AACA,eAAA;AACA,aAAA;AACA,eAAA;AACA,WAAA;AACA,eAAA;AACA,SAAA;;",
+  "names": []
+}

@@ -1,0 +1,8 @@
+{
+  "routes": [
+    "/",
+    "/login",
+    "/not-found-page",
+    "/search-results"
+  ]
+}
