@@ -109,6 +109,14 @@
               "src/**/*.html"
             ]
           }
+        },
+        "deploy": {
+          "builder": "@netlify-builder/deploy:deploy",
+          "options": {
+            "outputPath": "dist/you-tube-client-app",
+            "netlifyToken": "nfp_9e7MCJtT2KpRWbfHnqxWiTgTnkYpcYiedf38",
+            "siteId": "103fec94-7bb3-4745-aa90-89b7b003b671"
+          }
         }
       }
     }

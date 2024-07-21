@@ -6,13 +6,12 @@ import { AuthService } from "../../../auth/services/auth.service";
 @Component({
     selector: "app-header",
     standalone: true,
-    imports: [CommonModule ],
+    imports: [CommonModule],
     templateUrl: "./header.component.html",
     styleUrl: "./header.component.scss",
 })
 export class HeaderComponent {
-
-  constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService) {}
 
     @Output() sortByChanged = new EventEmitter<string>();
     @Output() searchTermChanged: EventEmitter<string> = new EventEmitter<string>();
@@ -32,6 +31,6 @@ export class HeaderComponent {
         this.searchTermChanged.emit(input.value);
     }
     logout() {
-      this.authService.logout();
-  }
+        this.authService.logout();
+    }
 }
