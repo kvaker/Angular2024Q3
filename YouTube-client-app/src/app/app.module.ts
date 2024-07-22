@@ -1,3 +1,4 @@
+import { DatePipe } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
@@ -14,7 +15,7 @@ import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-
 @NgModule({
     declarations: [AppComponent, LoginComponent, HeaderComponent, NotFoundPageComponent],
     imports: [BrowserModule, FormsModule, SearchModule, AppRoutingModule],
-    providers: [AuthService, AuthGuard],
+    providers: [AuthService, AuthGuard, DatePipe],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

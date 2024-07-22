@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from "rxjs";
+import { map } from "rxjs/operators";
 
+import { VideoItem } from "../../youtube/models/video.model";
 import { SearchResponse } from "../models/search-response.model";
 
 @Injectable({
@@ -787,5 +789,14 @@ export class SearchDataService {
             ],
         };
         return of(mockData);
+    }
+    static getSearchResults(): Observable<SearchResponse> {
+        return this.getMockSearchResults();
+    }
+
+    static getVideoById(id: string): Observable<VideoItem | undefined> {
+        return this.getSearchResults().pipe(
+            map((response) => response.items.find((item) => item.id === id))
+        );
     }
 }
