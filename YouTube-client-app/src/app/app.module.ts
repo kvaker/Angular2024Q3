@@ -1,6 +1,6 @@
 import { DatePipe } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { AppComponent } from "./app.component";
@@ -14,7 +14,7 @@ import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-
 
 @NgModule({
     declarations: [AppComponent, LoginComponent, HeaderComponent, NotFoundPageComponent],
-    imports: [BrowserModule, FormsModule, SearchModule, AppRoutingModule],
+    imports: [BrowserModule, FormsModule, ReactiveFormsModule, SearchModule, AppRoutingModule],
     providers: [AuthService, AuthGuard, DatePipe],
     bootstrap: [AppComponent]
 })
