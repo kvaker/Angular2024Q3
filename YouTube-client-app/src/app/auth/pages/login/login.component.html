@@ -6,20 +6,20 @@
         <label for="email">Email:</label>
         <input type="email" id="email" formControlName="email" class="login-input">
         <div *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched">
-          Please enter a valid email address.
+          Please enter a login email
         </div>
       </div>
       <div>
         <label for="password">Password:</label>
         <input type="password" id="password" formControlName="password" class="login-input">
         <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched">
-          Password is required.
+          Please enter a password
         </div>
         <div *ngIf="loginForm.get('password')?.errors?.['minlength'] && loginForm.get('password')?.touched">
           Password must be at least 8 characters long.
         </div>
         <div *ngIf="loginForm.get('password')?.errors?.['pattern'] && loginForm.get('password')?.touched">
-          Password must contain at least one uppercase letter, one lowercase letter, and one number.
+          Password must contain at least one uppercase letter, one lowercase letter, and one number
         </div>
         <div class="button-container">
           <div class="registration">

@@ -10,10 +10,11 @@ import { AuthService } from "./auth/services/auth.service";
 import { AuthGuard } from "./core/components/guards/auth.guard";
 import { HeaderComponent } from "./core/components/header/header.component";
 import { SearchModule } from "./search/search.module";
+import { AdminComponent } from "./youtube/pages/admin/admin.component";
 import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-page.component";
 
 @NgModule({
-    declarations: [AppComponent, LoginComponent, HeaderComponent, NotFoundPageComponent],
+    declarations: [AppComponent, LoginComponent, AdminComponent, HeaderComponent, NotFoundPageComponent],
     imports: [BrowserModule, FormsModule, ReactiveFormsModule, SearchModule, AppRoutingModule],
     providers: [AuthService, AuthGuard, DatePipe],
     bootstrap: [AppComponent]

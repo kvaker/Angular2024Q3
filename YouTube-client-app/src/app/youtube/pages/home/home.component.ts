@@ -3,11 +3,12 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { HeaderComponent } from "../../../core/components/header/header.component";
+import { AdminComponent } from "../admin/admin.component";
 
 @Component({
     selector: "app-home",
     standalone: true,
-    imports: [CommonModule, HeaderComponent],
+    imports: [CommonModule, HeaderComponent, AdminComponent],
     templateUrl: "./home.component.html",
     styleUrls: ["./home.component.scss"]
 })
