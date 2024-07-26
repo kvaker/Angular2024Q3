@@ -68,3 +68,7 @@ $middle-gray: #efefef;
 .button:hover {
   background: darken($primary-color, 10%);
 }
+
+.error {
+  border: 1px solid red;
+}
