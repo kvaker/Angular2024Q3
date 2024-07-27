@@ -26,7 +26,7 @@ export class VideoDetailsComponent implements OnInit {
     ngOnInit(): void {
         const videoId = this.route.snapshot.paramMap.get("id");
         if (videoId) {
-            SearchDataService.getVideoById(videoId).subscribe((video) => {
+            this.dataService.getVideoById(videoId).subscribe((video) => {
                 this.video = video!;
             });
         }

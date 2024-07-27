@@ -1,7 +1,12 @@
+export interface SearchItemId {
+    kind: string;
+    videoId: string;
+}
+
 export interface SearchItem {
     kind: string;
     etag: string;
-    id: string;
+    id: SearchItemId;
     snippet: {
         publishedAt: string;
         channelId: string;

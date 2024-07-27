@@ -1,7 +1,9 @@
+import { SearchItem } from "./search-item.model";
+
 export interface SearchResponse {
     kind: string;
     etag: string;
-    pageInfo: PageInfo;
+    pageInfo: { totalResults: number; resultsPerPage: number };
     items: SearchItem[];
 }
 
@@ -10,14 +12,20 @@ export interface PageInfo {
     resultsPerPage: number;
 }
 
-export interface SearchItem {
+export interface SearchItemId {
     kind: string;
-    etag: string;
-    id: string;
-    snippet: Snippet;
-    statistics: Statistics;
+    videoId: string;
 }
 
+export interface SearchItemSnippet {
+    publishedAt: string;
+    channelId: string;
+    title: string;
+    description: string;
+    thumbnails: Thumbnails;
+    channelTitle: string;
+    liveBroadcastContent: string;
+}
 export interface Snippet {
     publishedAt: string;
     channelId: string;
@@ -25,11 +33,7 @@ export interface Snippet {
     description: string;
     thumbnails: Thumbnails;
     channelTitle: string;
-    tags: string[];
-    categoryId: string;
-    liveBroadcastContent: string;
-    localized: Localized;
-    defaultAudioLanguage: string;
+    tags?: string[];
 }
 
 export interface Thumbnails {

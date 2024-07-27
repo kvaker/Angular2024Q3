@@ -1,8 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { NGXLogger } from "ngx-logger";
 
 import { HeaderComponent } from "../../core/components/header/header.component";
+import { VideoItem } from "../../youtube/models/video.model";
+import { SearchItem } from "../models/search-item.model";
 import { SearchResponse } from "../models/search-response.model";
 import { SearchItemComponent } from "../search-item/search-item.component";
 import { SearchDataService } from "../services/search-data.service";
@@ -22,22 +25,30 @@ export class SearchResultsComponent implements OnInit {
         items: [],
     };
 
-    filteredResults = this.searchResults.items;
+    filteredResults: SearchItem[] = this.searchResults.items;
 
-    constructor(private dataService: SearchDataService, private route: ActivatedRoute) {}
+    constructor(private dataService: SearchDataService, private route: ActivatedRoute, private logger: NGXLogger) {}
 
     ngOnInit(): void {
-        SearchDataService.getMockSearchResults().subscribe(
+        this.dataService.searchVideos("your query").subscribe(
             (data: SearchResponse) => {
                 this.searchResults = data;
                 this.filteredResults = data.items;
-                // eslint-disable-next-line no-console
-                console.log("Received search results:", this.searchResults);
+
+                const videoIds = this.searchResults.items.map((item) => item.id.videoId);
+                this.dataService.getVideoStatistics(videoIds).subscribe((stats: VideoItem[]) => {
+                    this.searchResults.items.forEach((item, index) => {
+                        const videoStat = stats.find((stat) => stat.id === item.id.videoId);
+                        if (videoStat) {
+                            this.searchResults.items[index].statistics = videoStat.statistics;
+                        }
+                    });
+                });
+                this.logger.info("Received search results:", this.searchResults);
             },
             (error: unknown) => {
-                // eslint-disable-next-line no-console
-                console.error("Error fetching search results", error);
-            },
+                this.logger.error("Error fetching search results", error);
+            }
         );
     }
 
@@ -87,16 +98,4 @@ export class SearchResultsComponent implements OnInit {
                 || item.snippet.description.toLowerCase().includes(searchTermLower),
         );
     }
-
-    // sortSearchResults(): void {
-    //   this.searchResults.items.sort((a, b) => {
-    //     if (a.snippet.title < b.snippet.title) {
-    //       return -1;
-    //     }
-    //     if (a.snippet.title > b.snippet.title) {
-    //       return 1;
-    //     }
-    //     return 0;
-    //   });
-    // }
 }
