@@ -1,5 +1,7 @@
 import { DatePipe } from "@angular/common";
-import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import {
+    HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi
+} from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
@@ -26,7 +28,6 @@ import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-
     ],
     imports: [
         BrowserModule,
-        HttpClientModule,
         LoggerModule.forRoot({ level: NgxLoggerLevel.DEBUG }),
         FormsModule,
         ReactiveFormsModule,

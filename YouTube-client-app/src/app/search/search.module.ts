@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { provideHttpClient } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
 import { SearchItemComponent } from "./search-item/search-item.component";
@@ -14,7 +15,8 @@ import { SearchDataService } from "./services/search-data.service";
         CommonModule
     ],
     providers: [
-        SearchDataService
+        SearchDataService,
+        provideHttpClient()
     ]
 })
 export class SearchModule { }
