@@ -63,22 +63,8 @@ header {
     flex: 1;
     padding: 8.5px;
     border: 0px solid $secondary-color;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     font-size: 16px;
-  }
-
-  form button[type='submit'] {
-    padding: 10px 20px;
-    background-color: $primary-color;
-    color: white;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  form button[type='submit']:hover {
-    background-color: darken($primary-color, 10%);
   }
 
   button {
@@ -116,27 +102,12 @@ header {
     flex: 1;
     padding: 4.5px;
     border: 0px solid $secondary-color;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     font-size: 16px;
   }
 
   form input[type='text']:focus {
     background-color: $middle-gray;
-  }
-
-  form button[type='submit'] {
-    padding: 5px 20px;
-    background-color: $primary-color;
-    color: white;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    filter: drop-shadow(2px 2px 4px rgba(47, 128, 237, 0.25));
-  }
-
-  form button[type='submit']:hover {
-    background-color: darken($primary-color, 10%);
   }
   .account {
     display: flex;
