@@ -7,16 +7,8 @@ import { SearchResultsComponent } from "./search-results/search-results.componen
 import { SearchDataService } from "./services/search-data.service";
 
 @NgModule({
-    declarations: [
-        SearchResultsComponent,
-        SearchItemComponent
-    ],
-    imports: [
-        CommonModule
-    ],
-    providers: [
-        SearchDataService,
-        provideHttpClient()
-    ]
+    declarations: [SearchResultsComponent, SearchItemComponent],
+    imports: [CommonModule],
+    providers: [SearchDataService, provideHttpClient()],
 })
-export class SearchModule { }
+export class SearchModule {}

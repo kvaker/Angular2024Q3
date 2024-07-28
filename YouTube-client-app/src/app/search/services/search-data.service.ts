@@ -21,7 +21,8 @@ export class SearchDataService {
     }
 
     getVideoStatistics(videoIds: string[]): Observable<VideoItem[]> {
-        return this.http.get<{ items: VideoItem[] }>(`${this.statsUrl}${videoIds.join(",")}`)
+        return this.http
+            .get<{ items: VideoItem[] }>(`${this.statsUrl}${videoIds.join(",")}`)
             .pipe(map((response) => response.items));
     }
 
@@ -30,8 +31,8 @@ export class SearchDataService {
             .set("key", this.apiKey)
             .set("part", "snippet,statistics")
             .set("id", videoId);
-        return this.http.get<{ items: VideoItem[] }>(this.statsUrl, { params }).pipe(
-            map((response) => response.items[0])
-        );
+        return this.http
+            .get<{ items: VideoItem[] }>(this.statsUrl, { params })
+            .pipe(map((response) => response.items[0]));
     }
 }

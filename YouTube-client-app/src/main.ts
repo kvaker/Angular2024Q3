@@ -5,9 +5,7 @@ import { AppComponent } from "./app/app.component";
 import { routes } from "./app/app.routes";
 
 bootstrapApplication(AppComponent, {
-    providers: [
-        provideRouter(routes, withComponentInputBinding())
-    ]
+    providers: [provideRouter(routes, withComponentInputBinding())],
 })
-    // eslint-disable-next-line no-console
+// eslint-disable-next-line no-console
     .catch((err) => console.error(err));

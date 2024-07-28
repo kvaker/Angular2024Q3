@@ -1,64 +1,175 @@
-
 <div class="admin-container">
   <div class="text">Create new card</div>
   <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" class="admin-form">
     <div>
       <label for="title">Title</label>
-      <input type="text" id="title" formControlName="title" class="admin-input" [ngClass]="{ 'error': adminForm.get('title')?.invalid && (adminForm.get('title')?.dirty || adminForm.get('title')?.touched) }">
-      <div *ngIf="adminForm.get('title')?.errors?.['required'] && (adminForm.get('title')?.dirty || adminForm.get('title')?.touched)">
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        class="admin-input"
+        [ngClass]="{
+          error:
+            adminForm.get('title')?.invalid &&
+            (adminForm.get('title')?.dirty || adminForm.get('title')?.touched),
+        }"
+      />
+      <div
+        *ngIf="
+          adminForm.get('title')?.errors?.['required'] &&
+          (adminForm.get('title')?.dirty || adminForm.get('title')?.touched)
+        "
+      >
         Please enter a title
       </div>
-      <div *ngIf="adminForm.get('title')?.errors?.['minlength'] && (adminForm.get('title')?.dirty || adminForm.get('title')?.touched)">
+      <div
+        *ngIf="
+          adminForm.get('title')?.errors?.['minlength'] &&
+          (adminForm.get('title')?.dirty || adminForm.get('title')?.touched)
+        "
+      >
         The title is too short
       </div>
-      <div *ngIf="adminForm.get('title')?.errors?.['maxlength'] && (adminForm.get('title')?.dirty || adminForm.get('title')?.touched)">
+      <div
+        *ngIf="
+          adminForm.get('title')?.errors?.['maxlength'] &&
+          (adminForm.get('title')?.dirty || adminForm.get('title')?.touched)
+        "
+      >
         The title is too long
       </div>
     </div>
     <div>
       <label for="description">Description</label>
-      <textarea id="description" formControlName="description" class="admin-input" [ngClass]="{ 'error': adminForm.get('description')?.invalid && (adminForm.get('description')?.dirty || adminForm.get('description')?.touched) }"></textarea>
-      <div *ngIf="adminForm.get('description')?.errors?.['maxlength'] && (adminForm.get('description')?.dirty || adminForm.get('description')?.touched)">
+      <textarea
+        id="description"
+        formControlName="description"
+        class="admin-input"
+        [ngClass]="{
+          error:
+            adminForm.get('description')?.invalid &&
+            (adminForm.get('description')?.dirty || adminForm.get('description')?.touched),
+        }"
+      ></textarea>
+      <div
+        *ngIf="
+          adminForm.get('description')?.errors?.['maxlength'] &&
+          (adminForm.get('description')?.dirty || adminForm.get('description')?.touched)
+        "
+      >
         The description is too long
       </div>
     </div>
     <div>
       <label for="imageLink">Img</label>
-      <input type="text" id="imageLink" formControlName="imageLink" class="admin-input" [ngClass]="{ 'error': adminForm.get('imageLink')?.invalid && (adminForm.get('imageLink')?.dirty || adminForm.get('imageLink')?.touched) }">
-      <div *ngIf="adminForm.get('imageLink')?.errors?.['required'] && (adminForm.get('imageLink')?.dirty || adminForm.get('imageLink')?.touched)">
+      <input
+        type="text"
+        id="imageLink"
+        formControlName="imageLink"
+        class="admin-input"
+        [ngClass]="{
+          error:
+            adminForm.get('imageLink')?.invalid &&
+            (adminForm.get('imageLink')?.dirty || adminForm.get('imageLink')?.touched),
+        }"
+      />
+      <div
+        *ngIf="
+          adminForm.get('imageLink')?.errors?.['required'] &&
+          (adminForm.get('imageLink')?.dirty || adminForm.get('imageLink')?.touched)
+        "
+      >
         Please enter a link to the image
       </div>
     </div>
     <div>
       <label for="videoLink">Link video</label>
-      <input type="text" id="videoLink" formControlName="videoLink" class="admin-input" [ngClass]="{ 'error': adminForm.get('videoLink')?.invalid && (adminForm.get('videoLink')?.dirty || adminForm.get('videoLink')?.touched) }">
-      <div *ngIf="adminForm.get('videoLink')?.errors?.['required'] && (adminForm.get('videoLink')?.dirty || adminForm.get('videoLink')?.touched)">
+      <input
+        type="text"
+        id="videoLink"
+        formControlName="videoLink"
+        class="admin-input"
+        [ngClass]="{
+          error:
+            adminForm.get('videoLink')?.invalid &&
+            (adminForm.get('videoLink')?.dirty || adminForm.get('videoLink')?.touched),
+        }"
+      />
+      <div
+        *ngIf="
+          adminForm.get('videoLink')?.errors?.['required'] &&
+          (adminForm.get('videoLink')?.dirty || adminForm.get('videoLink')?.touched)
+        "
+      >
         Please enter a link to the video
       </div>
     </div>
     <div>
       <label for="creationDate">Creation date</label>
-      <input type="date" id="creationDate" formControlName="creationDate" class="admin-input" [ngClass]="{ 'error': adminForm.get('creationDate')?.invalid && (adminForm.get('creationDate')?.dirty || adminForm.get('creationDate')?.touched) }">
-      <div *ngIf="adminForm.get('creationDate')?.errors?.['required'] && (adminForm.get('creationDate')?.dirty || adminForm.get('creationDate')?.touched)">
+      <input
+        type="date"
+        id="creationDate"
+        formControlName="creationDate"
+        class="admin-input"
+        [ngClass]="{
+          error:
+            adminForm.get('creationDate')?.invalid &&
+            (adminForm.get('creationDate')?.dirty || adminForm.get('creationDate')?.touched),
+        }"
+      />
+      <div
+        *ngIf="
+          adminForm.get('creationDate')?.errors?.['required'] &&
+          (adminForm.get('creationDate')?.dirty || adminForm.get('creationDate')?.touched)
+        "
+      >
         Please enter a creation date
       </div>
-      <div *ngIf="adminForm.get('creationDate')?.errors?.['dateInFuture'] && (adminForm.get('creationDate')?.dirty || adminForm.get('creationDate')?.touched)">
+      <div
+        *ngIf="
+          adminForm.get('creationDate')?.errors?.['dateInFuture'] &&
+          (adminForm.get('creationDate')?.dirty || adminForm.get('creationDate')?.touched)
+        "
+      >
         The date is invalid
       </div>
     </div>
     <div formArrayName="tags">
       <div *ngFor="let tag of adminForm.get('tags')?.value; let i = index" class="tag-container">
-        <label for="tag{{i}}">Tag {{i + 1}}:</label>
-        <input type="text" id="tag{{i}}" formControlName="{{i}}" class="admin-input" [ngClass]="{ 'error': adminForm.get('tags.' + i)?.invalid && (adminForm.get('tags.' + i)?.dirty || adminForm.get('tags.' + i)?.touched) }">
-        <div *ngIf="adminForm.get('tags.' + i)?.invalid && (adminForm.get('tags.' + i)?.dirty || adminForm.get('tags.' + i)?.touched)">
+        <label for="tag{{ i }}">Tag {{ i + 1 }}:</label>
+        <input
+          type="text"
+          id="tag{{ i }}"
+          formControlName="{{ i }}"
+          class="admin-input"
+          [ngClass]="{
+            error:
+              adminForm.get('tags.' + i)?.invalid &&
+              (adminForm.get('tags.' + i)?.dirty || adminForm.get('tags.' + i)?.touched),
+          }"
+        />
+        <div
+          *ngIf="
+            adminForm.get('tags.' + i)?.invalid &&
+            (adminForm.get('tags.' + i)?.dirty || adminForm.get('tags.' + i)?.touched)
+          "
+        >
           Tag is required
         </div>
         <div class="button-container">
-          <button type="button" (click)="removeTag(i)" *ngIf="adminForm.get('tags')?.value.length > 1">Delete tag</button>
+          <button
+            type="button"
+            (click)="removeTag(i)"
+            *ngIf="adminForm.get('tags')?.value.length > 1"
+          >
+            Delete tag
+          </button>
         </div>
       </div>
     </div>
-    <button type="button" (click)="addTag()" *ngIf="adminForm.get('tags')?.value.length < 5">Add tag</button>
+    <button type="button" (click)="addTag()" *ngIf="adminForm.get('tags')?.value.length < 5">
+      Add tag
+    </button>
     <div class="button-container">
       <button type="submit" [disabled]="!adminForm.valid" class="button">Create card</button>
       <button type="button" (click)="resetForm()" class="button">Reset</button>

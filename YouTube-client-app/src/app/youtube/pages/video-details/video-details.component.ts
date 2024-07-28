@@ -20,7 +20,7 @@ export class VideoDetailsComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private dataService: SearchDataService,
-        private datePipe: DatePipe
+        private datePipe: DatePipe,
     ) {}
 
     ngOnInit(): void {

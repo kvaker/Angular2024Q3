@@ -1,5 +1,9 @@
 import {
-    HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
+    HttpErrorResponse,
+    HttpEvent,
+    HttpHandler,
+    HttpInterceptor,
+    HttpRequest,
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { NGXLogger } from "ngx-logger";
@@ -16,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
         const authReq = req.clone({
-            setHeaders: { Authorization: `Bearer ${this.authToken}` }
+            setHeaders: { Authorization: `Bearer ${this.authToken}` },
         });
 
         return next.handle(authReq).pipe(
@@ -27,7 +31,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     this.logger.error(`Request failed with status: ${error.status}`, error);
                 }
                 return throwError(() => new Error(`Error in request: ${error.message}`));
-            })
+            }),
         );
     }
 }

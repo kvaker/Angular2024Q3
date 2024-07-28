@@ -10,7 +10,7 @@ import { AdminComponent } from "../admin/admin.component";
     standalone: true,
     imports: [CommonModule, HeaderComponent, AdminComponent],
     templateUrl: "./home.component.html",
-    styleUrls: ["./home.component.scss"]
+    styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent {
     constructor(private router: Router) {}

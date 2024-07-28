@@ -1,8 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import {
-    AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors,
-    Validators
+    AbstractControl,
+    FormArray,
+    FormBuilder,
+    FormGroup,
+    ReactiveFormsModule,
+    ValidationErrors,
+    Validators,
 } from "@angular/forms";
 import { RouterOutlet } from "@angular/router";
 
@@ -11,7 +16,7 @@ import { RouterOutlet } from "@angular/router";
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule, RouterOutlet],
     templateUrl: "./admin.component.html",
-    styleUrl: "./admin.component.scss"
+    styleUrl: "./admin.component.scss",
 })
 export class AdminComponent implements OnInit {
     adminForm: FormGroup = new FormGroup({});
@@ -23,33 +28,18 @@ export class AdminComponent implements OnInit {
             imageLink: ["", [Validators.required]],
             videoLink: ["", [Validators.required]],
             creationDate: ["", [Validators.required]],
-            tags: this.formBuilder.array([], Validators.maxLength(5))
+            tags: this.formBuilder.array([], Validators.maxLength(5)),
         });
     }
 
     ngOnInit(): void {
         this.adminForm = this.formBuilder.group({
-            title: ["", [
-                Validators.required,
-                Validators.minLength(3),
-                Validators.maxLength(20)
-            ]],
-            description: ["", [
-                Validators.maxLength(255)
-            ]],
-            imageLink: ["", [
-                Validators.required
-            ]],
-            videoLink: ["", [
-                Validators.required
-            ]],
-            creationDate: ["", [
-                Validators.required,
-                AdminComponent.dateNotInFutureValidator
-            ]],
-            tags: this.formBuilder.array([
-                this.createTagFormGroup()
-            ])
+            title: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+            description: ["", [Validators.maxLength(255)]],
+            imageLink: ["", [Validators.required]],
+            videoLink: ["", [Validators.required]],
+            creationDate: ["", [Validators.required, AdminComponent.dateNotInFutureValidator]],
+            tags: this.formBuilder.array([this.createTagFormGroup()]),
         });
     }
 
@@ -62,20 +52,26 @@ export class AdminComponent implements OnInit {
         return null;
     }
 
-    get f() { return this.adminForm.controls; }
-    get tagControls() { return (this.adminForm.get("tags") as FormArray).controls; }
+    get f() {
+        return this.adminForm.controls;
+    }
+    get tagControls() {
+        return (this.adminForm.get("tags") as FormArray).controls;
+    }
 
     createTagFormGroup(): FormGroup {
         return this.formBuilder.group({
-            tag: ["", Validators.required]
+            tag: ["", Validators.required],
         });
     }
 
     addTag() {
         const tags = this.adminForm.get("tags") as FormArray;
-        tags.push(this.formBuilder.group({
-            tag: ["", Validators.required]
-        }));
+        tags.push(
+            this.formBuilder.group({
+                tag: ["", Validators.required],
+            }),
+        );
     }
 
     removeTag(index: number) {
@@ -96,7 +92,7 @@ export class AdminComponent implements OnInit {
             imageLink: "",
             videoLink: "",
             creationDate: "",
-            tags: [this.createTagFormGroup()]
+            tags: [this.createTagFormGroup()],
         });
     }
 }

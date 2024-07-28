@@ -1,7 +1,5 @@
 import { DatePipe } from "@angular/common";
-import {
-    HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi
-} from "@angular/common/http";
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
@@ -39,8 +37,8 @@ import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-
         AuthGuard,
         DatePipe,
         provideHttpClient(withInterceptorsFromDi()),
-        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

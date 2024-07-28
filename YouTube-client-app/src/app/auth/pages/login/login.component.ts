@@ -13,16 +13,25 @@ import { AuthService } from "../../services/auth.service";
     standalone: true,
     imports: [CommonModule, HeaderComponent, ReactiveFormsModule, RouterOutlet],
     templateUrl: "./login.component.html",
-    styleUrls: ["./login.component.scss"]
+    styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent {
     loginForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+    constructor(
+        private formBuilder: FormBuilder,
+        private authService: AuthService,
+    ) {
         this.loginForm = this.formBuilder.group({
             email: ["", [Validators.required, Validators.email]],
-            password: ["", [Validators.required, Validators.minLength(8),
-                Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}")]]
+            password: [
+                "",
+                [
+                    Validators.required,
+                    Validators.minLength(8),
+                    Validators.pattern("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}"),
+                ],
+            ],
         });
     }
 

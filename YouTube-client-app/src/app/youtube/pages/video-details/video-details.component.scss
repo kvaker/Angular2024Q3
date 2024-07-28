@@ -65,7 +65,10 @@
     color: #000;
     z-index: 100;
 
-    .viewed, .like, .dislike, .comments {
+    .viewed,
+    .like,
+    .dislike,
+    .comments {
       display: flex;
       align-items: center;
       margin-right: 17px;

@@ -27,7 +27,11 @@ export class SearchResultsComponent implements OnInit {
 
     filteredResults: SearchItem[] = this.searchResults.items;
 
-    constructor(private dataService: SearchDataService, private route: ActivatedRoute, private logger: NGXLogger) {}
+    constructor(
+        private dataService: SearchDataService,
+        private route: ActivatedRoute,
+        private logger: NGXLogger,
+    ) {}
 
     ngOnInit(): void {
         this.dataService.searchVideos("your query").subscribe(
@@ -48,7 +52,7 @@ export class SearchResultsComponent implements OnInit {
             },
             (error: unknown) => {
                 this.logger.error("Error fetching search results", error);
-            }
+            },
         );
     }
 
@@ -77,9 +81,9 @@ export class SearchResultsComponent implements OnInit {
         this.filteredResults.sort((a, b) => {
             if (
                 a.statistics
-                && b.statistics
-                && typeof Number(a.statistics.viewCount) === "number"
-                && typeof Number(b.statistics.viewCount) === "number"
+        && b.statistics
+        && typeof Number(a.statistics.viewCount) === "number"
+        && typeof Number(b.statistics.viewCount) === "number"
             ) {
                 return Number(b.statistics.viewCount) - Number(a.statistics.viewCount);
             }
@@ -95,7 +99,7 @@ export class SearchResultsComponent implements OnInit {
         const searchTermLower = searchTerm.toLowerCase();
         this.filteredResults = this.searchResults.items.filter(
             (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
-                || item.snippet.description.toLowerCase().includes(searchTermLower),
+        || item.snippet.description.toLowerCase().includes(searchTermLower),
         );
     }
 }
