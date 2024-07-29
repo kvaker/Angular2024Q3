@@ -19,8 +19,18 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-        const authReq = req.clone({
-            setHeaders: { Authorization: `Bearer ${this.authToken}` },
+        let authReq = req;
+        if (req.url.includes("youtube")) {
+            authReq = req.clone({
+                url: req.url.replace("https://www.googleapis.com/youtube/v3/", ""),
+                setParams: { key: this.authToken }
+            });
+        }
+
+        authReq = authReq.clone({
+            setHeaders: {
+                Authorization: `Bearer ${this.authToken}`
+            }
         });
 
         return next.handle(authReq).pipe(
