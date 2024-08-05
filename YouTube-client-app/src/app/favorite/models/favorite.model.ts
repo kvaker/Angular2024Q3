@@ -3,4 +3,5 @@ export interface FavoriteItem {
     title: string;
     description: string;
     thumbnailUrl: string;
+    isFavorite: boolean;
 }

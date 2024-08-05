@@ -13,6 +13,13 @@
         </form>
       </div>
     </div>
+    <nav>
+      <ul>
+        <li>
+          <a routerLink="/favorites"><i class="fa fa-heart"></i> Favorites</a>
+        </li>
+      </ul>
+    </nav>
     <button class="sort-button" *ngIf="!isLoggedIn" (click)="router.navigate(['/login'])">
       Login
     </button>

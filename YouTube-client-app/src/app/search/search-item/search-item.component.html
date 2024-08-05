@@ -71,6 +71,9 @@
         </div>
         <div class="card-title">{{ searchItem.snippet.title }}</div>
         <div class="card-description">{{ searchItem.snippet.description }}</div>
+        <button (click)="toggleFavorite(searchItem!)">
+          <i [class.filled]="isFavorite" class="fa fa-heart"></i>
+        </button>
         <button class="card-button" [routerLink]="['/video', searchItem.id]">more...</button>
       </div>
       <div appSearchItem class="card-color"></div>

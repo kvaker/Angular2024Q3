@@ -1,15 +1,11 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 
-import { FavoriteState } from "../reducers/favorite.reducer";
+import { FavoriteItem } from "../../favorite/models/favorite.model";
+import { AppState } from "../state.models";
 
-export const selectFavoriteState = createFeatureSelector<FavoriteState>("favorites");
+export const selectFavorites = createFeatureSelector<AppState, FavoriteItem[]>("favorites");
 
-export const selectAllFavorites = createSelector(
-    selectFavoriteState,
-    (state: FavoriteState) => state.favorites
-);
-
-export const selectFavoriteError = createSelector(
-    selectFavoriteState,
-    (state: FavoriteState) => state.error
+export const selectFavoriteItems = createSelector(
+    selectFavorites,
+    (favorites: FavoriteItem[]) => favorites,
 );

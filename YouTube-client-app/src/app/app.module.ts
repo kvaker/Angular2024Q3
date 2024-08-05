@@ -30,7 +30,7 @@ import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-
         AdminComponent,
         HeaderComponent,
         NotFoundPageComponent,
-        FavoritePageComponent
+        FavoritePageComponent,
     ],
     imports: [
         BrowserModule,

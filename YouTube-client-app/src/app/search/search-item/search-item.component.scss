@@ -121,3 +121,12 @@
 .text-comments {
   position: relative;
 }
+
+.fa-heart {
+  color: grey;
+  cursor: pointer;
+}
+
+.fa-heart.filled {
+  color: red;
+}

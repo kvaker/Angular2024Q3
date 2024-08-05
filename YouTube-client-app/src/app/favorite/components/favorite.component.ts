@@ -3,19 +3,20 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 
 import { loadFavorites, removeFavorite } from "../../redux/actions/favorite.actions";
-import { selectAllFavorites } from "../../redux/selectors/favorite.selectors";
+import { selectFavoriteItems } from "../../redux/selectors/favorite.selectors";
+import { AppState } from "../../redux/state.models";
 import { FavoriteItem } from "../models/favorite.model";
 
 @Component({
     selector: "app-favorite",
     templateUrl: "./favorite.component.html",
-    styleUrls: ["./favorite.component.scss"]
+    styleUrls: ["./favorite.component.scss"],
 })
 export class FavoritePageComponent implements OnInit {
     favorites$: Observable<FavoriteItem[]>;
 
-    constructor(private store: Store) {
-        this.favorites$ = this.store.select(selectAllFavorites);
+    constructor(private store: Store<AppState>) {
+        this.favorites$ = this.store.select(selectFavoriteItems);
     }
 
     ngOnInit(): void {
