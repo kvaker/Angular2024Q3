@@ -4,9 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { NGXLogger } from "ngx-logger";
 
 import { HeaderComponent } from "../../core/components/header/header.component";
-import { VideoItem } from "../../youtube/models/video.model";
 import { SearchItem } from "../models/search-item.model";
-import { SearchResponse } from "../models/search-response.model";
 import { SearchItemComponent } from "../search-item/search-item.component";
 import { SearchDataService } from "../services/search-data.service";
 
@@ -18,14 +16,10 @@ import { SearchDataService } from "../services/search-data.service";
     styleUrls: ["./search-results.component.scss"],
 })
 export class SearchResultsComponent implements OnInit {
-    searchResults: SearchResponse = {
-        kind: "",
-        etag: "",
-        pageInfo: { totalResults: 0, resultsPerPage: 0 },
-        items: [],
-    };
+    searchResults$ = this.dataService.searchResults$;
+    videoStatistics$ = this.dataService.videoStatistics$;
 
-    filteredResults: SearchItem[] = this.searchResults.items;
+    filteredResults: SearchItem[] = [];
 
     constructor(
         private dataService: SearchDataService,
@@ -34,26 +28,13 @@ export class SearchResultsComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.dataService.searchVideos("your query").subscribe(
-            (data: SearchResponse) => {
-                this.searchResults = data;
-                this.filteredResults = data.items;
-
-                const videoIds = this.searchResults.items.map((item) => item.id.videoId);
-                this.dataService.getVideoStatistics(videoIds).subscribe((stats: VideoItem[]) => {
-                    this.searchResults.items.forEach((item, index) => {
-                        const videoStat = stats.find((stat) => stat.id === item.id.videoId);
-                        if (videoStat) {
-                            this.searchResults.items[index].statistics = videoStat.statistics;
-                        }
-                    });
-                });
-                this.logger.info("Received search results:", this.searchResults);
-            },
-            (error: unknown) => {
-                this.logger.error("Error fetching search results", error);
-            },
-        );
+        this.dataService.searchVideos("your query").subscribe(() => {
+            this.filteredResults = this.searchResults$() ? this.searchResults$()!.items : [];
+            const videoIds = this.filteredResults.map((item) => item.id.videoId);
+            this.dataService.getVideoStatistics(videoIds).subscribe(() => {
+            });
+            this.logger.info("Received search results:", this.searchResults$());
+        });
     }
 
     onSortByChanged(field: string) {
@@ -81,9 +62,9 @@ export class SearchResultsComponent implements OnInit {
         this.filteredResults.sort((a, b) => {
             if (
                 a.statistics
-        && b.statistics
-        && typeof Number(a.statistics.viewCount) === "number"
-        && typeof Number(b.statistics.viewCount) === "number"
+                && b.statistics
+                && typeof Number(a.statistics.viewCount) === "number"
+                && typeof Number(b.statistics.viewCount) === "number"
             ) {
                 return Number(b.statistics.viewCount) - Number(a.statistics.viewCount);
             }
@@ -97,9 +78,9 @@ export class SearchResultsComponent implements OnInit {
 
     onSearch(searchTerm: string) {
         const searchTermLower = searchTerm.toLowerCase();
-        this.filteredResults = this.searchResults.items.filter(
+        this.filteredResults = this.searchResults$() ? this.searchResults$()!.items.filter(
             (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
-        || item.snippet.description.toLowerCase().includes(searchTermLower),
-        );
+                       || item.snippet.description.toLowerCase().includes(searchTermLower),
+        ) : [];
     }
 }

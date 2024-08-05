@@ -4,18 +4,24 @@
 ></app-header>
 
 <main>
-  <div *ngIf="filteredResults && filteredResults.length; else noResults">
-    <section class="card-board" *ngIf="filteredResults?.length">
-      <div class="card-container">
-        <app-search-item
-          *ngFor="let item of filteredResults"
-          class="card"
-          [searchItem]="item"
-        ></app-search-item>
-      </div>
-    </section>
+  <div *ngIf="searchResults$() as searchResults; else loading">
+    <div *ngIf="filteredResults && filteredResults.length; else noResults">
+      <section class="card-board" *ngIf="filteredResults.length">
+        <div class="card-container">
+          <app-search-item
+            *ngFor="let item of filteredResults"
+            class="card"
+            [searchItem]="item"
+          ></app-search-item>
+        </div>
+      </section>
+    </div>
+    <ng-template #noResults>
+      <p>No results found.</p>
+    </ng-template>
   </div>
-  <ng-template #noResults>
-    <p>No results found.</p>
+  
+  <ng-template #loading>
+    <p>Loading results...</p>
   </ng-template>
 </main>
