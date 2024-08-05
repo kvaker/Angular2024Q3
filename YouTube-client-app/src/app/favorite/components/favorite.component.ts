@@ -1,10 +1,28 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
+
+import { loadFavorites, removeFavorite } from "../../redux/actions/favorite.actions";
+import { selectAllFavorites } from "../../redux/selectors/favorite.selectors";
+import { FavoriteItem } from "../models/favorite.model";
 
 @Component({
     selector: "app-favorite",
-    standalone: true,
-    imports: [],
     templateUrl: "./favorite.component.html",
-    styleUrl: "./favorite.component.scss",
+    styleUrls: ["./favorite.component.scss"]
 })
-export class FavoriteComponent {}
+export class FavoritePageComponent implements OnInit {
+    favorites$: Observable<FavoriteItem[]>;
+
+    constructor(private store: Store) {
+        this.favorites$ = this.store.select(selectAllFavorites);
+    }
+
+    ngOnInit(): void {
+        this.store.dispatch(loadFavorites());
+    }
+
+    removeFavorite(id: string): void {
+        this.store.dispatch(removeFavorite({ id }));
+    }
+}
