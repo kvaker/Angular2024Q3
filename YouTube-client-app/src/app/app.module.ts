@@ -14,6 +14,7 @@ import { LoginComponent } from "./auth/pages/login/login.component";
 import { AuthService } from "./auth/services/auth.service";
 import { AuthGuard } from "./core/components/guards/auth.guard";
 import { HeaderComponent } from "./core/components/header/header.component";
+import { FavoritePageComponent } from "./favorite/components/favorite.component";
 import { AuthInterceptor } from "./interceptors/auth-interceptor/auth-interceptor.component";
 import { VideoEffects } from "./redux/effects/video.effects";
 import { favoriteReducer } from "./redux/reducers/favorite.reducer";
@@ -29,6 +30,7 @@ import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-
         AdminComponent,
         HeaderComponent,
         NotFoundPageComponent,
+        FavoritePageComponent
     ],
     imports: [
         BrowserModule,
