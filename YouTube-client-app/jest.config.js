@@ -9,8 +9,8 @@ module.exports = {
     },
     testMatch: ['**/+(*.)+(spec).+(ts)'],
     transform: {
-      '^.+\\.(ts|js|html)$': 'ts-jest',
-    },
+        '^.+\\.(ts|js|html)$': 'esbuild-jest',
+      },
     transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
     moduleFileExtensions: ['ts', 'html', 'js', 'json'],
     moduleNameMapper: {

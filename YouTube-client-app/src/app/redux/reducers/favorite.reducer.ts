@@ -10,26 +10,26 @@ export interface FavoriteState {
 
 export const initialState: FavoriteState = {
     favorites: [],
-    error: null
+    error: null,
 };
 
 export const favoriteReducer = createReducer(
     initialState,
     on(FavoriteActions.addFavorite, (state, { favorite }) => ({
         ...state,
-        favorites: [...state.favorites, favorite]
+        favorites: [...state.favorites, favorite],
     })),
     on(FavoriteActions.removeFavorite, (state, { id }) => ({
         ...state,
-        favorites: state.favorites.filter((fav) => fav.id !== id)
+        favorites: state.favorites.filter((fav) => fav.id !== id),
     })),
     on(FavoriteActions.loadFavoritesSuccess, (state, { favorites }) => ({
         ...state,
         favorites,
-        error: null
+        error: null,
     })),
     on(FavoriteActions.loadFavoritesFailure, (state, { error }) => ({
         ...state,
-        error
-    }))
+        error,
+    })),
 );

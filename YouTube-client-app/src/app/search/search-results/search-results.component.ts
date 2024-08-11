@@ -31,8 +31,7 @@ export class SearchResultsComponent implements OnInit {
         this.dataService.searchVideos("your query").subscribe(() => {
             this.filteredResults = this.searchResults$() ? this.searchResults$()!.items : [];
             const videoIds = this.filteredResults.map((item) => item.id.videoId);
-            this.dataService.getVideoStatistics(videoIds).subscribe(() => {
-            });
+            this.dataService.getVideoStatistics(videoIds).subscribe(() => {});
             this.logger.info("Received search results:", this.searchResults$());
         });
     }
@@ -62,9 +61,9 @@ export class SearchResultsComponent implements OnInit {
         this.filteredResults.sort((a, b) => {
             if (
                 a.statistics
-                && b.statistics
-                && typeof Number(a.statistics.viewCount) === "number"
-                && typeof Number(b.statistics.viewCount) === "number"
+        && b.statistics
+        && typeof Number(a.statistics.viewCount) === "number"
+        && typeof Number(b.statistics.viewCount) === "number"
             ) {
                 return Number(b.statistics.viewCount) - Number(a.statistics.viewCount);
             }
@@ -78,9 +77,11 @@ export class SearchResultsComponent implements OnInit {
 
     onSearch(searchTerm: string) {
         const searchTermLower = searchTerm.toLowerCase();
-        this.filteredResults = this.searchResults$() ? this.searchResults$()!.items.filter(
-            (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
-                       || item.snippet.description.toLowerCase().includes(searchTermLower),
-        ) : [];
+        this.filteredResults = this.searchResults$()
+            ? this.searchResults$()!.items.filter(
+                (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
+            || item.snippet.description.toLowerCase().includes(searchTermLower),
+            )
+            : [];
     }
 }

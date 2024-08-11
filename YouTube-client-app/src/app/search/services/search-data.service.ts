@@ -20,26 +20,24 @@ export class SearchDataService {
     constructor(private http: HttpClient) {}
 
     searchVideos(query: string): Observable<SearchResponse> {
-        return this.http
-            .get<SearchResponse>(`${this.searchUrl}?q=${query}&key=${this.apiKey}`)
-            .pipe(
-                map((response) => {
-                    this.searchResults$.set(response);
-                    return response;
-                })
-            );
+        return this.http.get<SearchResponse>(`${this.searchUrl}?q=${query}&key=${this.apiKey}`).pipe(
+            map((response) => {
+                this.searchResults$.set(response);
+                return response;
+            }),
+        );
     }
 
     getVideoStatistics(videoIds: string[]): Observable<VideoItem[]> {
         return this.http
-            .get<{ items: VideoItem[] }>(
-            `${this.statsUrl}?id=${videoIds.join(",")}&key=${this.apiKey}&part=snippet,statistics`
-        )
+            .get<{
+            items: VideoItem[];
+        }>(`${this.statsUrl}?id=${videoIds.join(",")}&key=${this.apiKey}&part=snippet,statistics`)
             .pipe(
                 map((response) => {
                     this.videoStatistics$.set(response.items);
                     return response.items;
-                })
+                }),
             );
     }
 
