@@ -35,7 +35,9 @@ describe("SearchResultsComponent", () => {
     let mockSearchDataService: Partial<SearchDataService>;
 
     beforeEach(() => {
-        const searchResultsSignal = new MockWritableSignal<SearchResponse | null>(null) as WritableSignal<SearchResponse | null>;
+        const searchResultsSignal = new MockWritableSignal<SearchResponse | null>(
+            null,
+        ) as WritableSignal<SearchResponse | null>;
 
         mockSearchDataService = {
             searchResults$: searchResultsSignal,
@@ -43,9 +45,7 @@ describe("SearchResultsComponent", () => {
 
         TestBed.configureTestingModule({
             declarations: [SearchResultsComponent],
-            providers: [
-                { provide: SearchDataService, useValue: mockSearchDataService },
-            ],
+            providers: [{ provide: SearchDataService, useValue: mockSearchDataService }],
         }).compileComponents();
 
         fixture = TestBed.createComponent(SearchResultsComponent);

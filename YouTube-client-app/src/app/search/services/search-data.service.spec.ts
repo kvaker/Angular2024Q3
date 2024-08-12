@@ -11,11 +11,7 @@ describe("SearchDataService", () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [
-                SearchDataService,
-                provideHttpClient(),
-                provideHttpClientTesting(),
-            ],
+            providers: [SearchDataService, provideHttpClient(), provideHttpClientTesting()],
         });
 
         service = TestBed.inject(SearchDataService);
@@ -47,7 +43,9 @@ describe("SearchDataService", () => {
             expect(response.pageInfo.totalResults).toBe(0);
         });
 
-        const searchReq = httpMock.expectOne((req) => req.url.includes("youtube/v3/search") && req.params.has("q"));
+        const searchReq = httpMock.expectOne(
+            (req) => req.url.includes("youtube/v3/search") && req.params.has("q"),
+        );
         expect(searchReq.request.method).toBe("GET");
         searchReq.flush(dummyResponse);
     });

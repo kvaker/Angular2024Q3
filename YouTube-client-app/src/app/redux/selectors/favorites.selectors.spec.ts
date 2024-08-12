@@ -11,9 +11,7 @@ describe("MyComponent", () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [
-                provideMockStore({ initialState: { favorites: [], videos: [] } })
-            ]
+            providers: [provideMockStore({ initialState: { favorites: [], videos: [] } })],
         });
 
         store = TestBed.inject(Store) as MockStore<AppState>;
