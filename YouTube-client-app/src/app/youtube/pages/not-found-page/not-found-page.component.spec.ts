@@ -6,17 +6,22 @@ describe("NotFoundPageComponent", () => {
     let component: NotFoundPageComponent;
     let fixture: ComponentFixture<NotFoundPageComponent>;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            imports: [NotFoundPageComponent],
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [NotFoundPageComponent],
         }).compileComponents();
 
         fixture = TestBed.createComponent(NotFoundPageComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
     });
 
-    it("should create", () => {
+    it("should create the component", () => {
         expect(component).toBeTruthy();
+    });
+
+    it("should render not found message", () => {
+        fixture.detectChanges();
+        const compiled = fixture.nativeElement;
+        expect(compiled.querySelector("h1").textContent).toContain("Page Not Found");
     });
 });
