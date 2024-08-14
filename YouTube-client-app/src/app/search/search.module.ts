@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 
 import { AuthInterceptor } from "../interceptors/auth-interceptor/auth-interceptor.component";
@@ -9,14 +9,14 @@ import { SearchDataService } from "./services/search-data.service";
 
 @NgModule({
     declarations: [SearchResultsComponent, SearchItemComponent],
-    imports: [CommonModule],
+    imports: [CommonModule, HttpClientModule],
     providers: [
         SearchDataService,
-        provideHttpClient(withInterceptorsFromDi(), {
+        {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
             multi: true,
-        }),
+        },
     ],
 })
 export class SearchModule {}

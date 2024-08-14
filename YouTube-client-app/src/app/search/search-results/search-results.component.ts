@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { NGXLogger } from "ngx-logger";
 
 import { HeaderComponent } from "../../core/components/header/header.component";
 import { SearchItem } from "../models/search-item.model";
@@ -11,7 +11,8 @@ import { SearchDataService } from "../services/search-data.service";
 @Component({
     selector: "app-search-results",
     standalone: true,
-    imports: [CommonModule, SearchItemComponent, HeaderComponent],
+    imports: [CommonModule, SearchItemComponent, HeaderComponent, HttpClientModule],
+    providers: [SearchDataService],
     templateUrl: "./search-results.component.html",
     styleUrls: ["./search-results.component.scss"],
 })
@@ -24,7 +25,6 @@ export class SearchResultsComponent implements OnInit {
     constructor(
         private dataService: SearchDataService,
         private route: ActivatedRoute,
-        private logger: NGXLogger,
     ) {}
 
     ngOnInit(): void {
@@ -32,7 +32,6 @@ export class SearchResultsComponent implements OnInit {
             this.filteredResults = this.searchResults$() ? this.searchResults$()!.items : [];
             const videoIds = this.filteredResults.map((item) => item.id.videoId);
             this.dataService.getVideoStatistics(videoIds).subscribe(() => {});
-            this.logger.info("Received search results:", this.searchResults$());
         });
     }
 
