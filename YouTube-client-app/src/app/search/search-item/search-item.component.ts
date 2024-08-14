@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { Store } from "@ngrx/store";
+import { Store, StoreModule } from "@ngrx/store";
 import { map } from "rxjs/operators";
 
 import { FavoriteItem } from "../../favorite/models/favorite.model";
@@ -14,7 +14,7 @@ import { SearchItemDirective } from "./search-item.directive";
 @Component({
     selector: "app-search-item",
     standalone: true,
-    imports: [CommonModule, SearchItemDirective, RouterModule],
+    imports: [CommonModule, SearchItemDirective, RouterModule, StoreModule],
     templateUrl: "./search-item.component.html",
     styleUrls: ["./search-item.component.scss"],
 })
