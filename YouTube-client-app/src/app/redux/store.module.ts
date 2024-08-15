@@ -8,10 +8,9 @@ import { videoReducer } from "./reducers/video.reducer";
 
 @NgModule({
     imports: [
-        StoreModule.forRoot({
-            videos: videoReducer,
-            favorites: favoriteReducer,
-        }),
+        StoreModule.forRoot({}),
+        StoreModule.forFeature("favorites", favoriteReducer),
+        StoreModule.forFeature("videos", videoReducer),
         EffectsModule.forRoot([VideoEffects]),
     ],
 })

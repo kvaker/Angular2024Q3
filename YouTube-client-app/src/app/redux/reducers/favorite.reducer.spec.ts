@@ -38,11 +38,19 @@ describe("FavoriteReducer", () => {
             ...initialState,
             favorites: [
                 {
-                    id: "1", title: "Test Item", description: "", thumbnailUrl: "", isFavorite: true
+                    id: "1",
+                    title: "Test Item",
+                    description: "",
+                    thumbnailUrl: "",
+                    isFavorite: true,
                 },
                 {
-                    id: "2", title: "Another Item", description: "", thumbnailUrl: "", isFavorite: true
-                }
+                    id: "2",
+                    title: "Another Item",
+                    description: "",
+                    thumbnailUrl: "",
+                    isFavorite: true,
+                },
             ],
         };
 
@@ -62,11 +70,19 @@ describe("FavoriteReducer", () => {
     it("should handle loadFavoritesSuccess and populate the favorites list", () => {
         const favorites: FavoriteItem[] = [
             {
-                id: "1", title: "Test Item 1", description: "", thumbnailUrl: "", isFavorite: true
+                id: "1",
+                title: "Test Item 1",
+                description: "",
+                thumbnailUrl: "",
+                isFavorite: true,
             },
             {
-                id: "2", title: "Test Item 2", description: "", thumbnailUrl: "", isFavorite: true
-            }
+                id: "2",
+                title: "Test Item 2",
+                description: "",
+                thumbnailUrl: "",
+                isFavorite: true,
+            },
         ];
 
         const action = loadFavoritesSuccess({ favorites });

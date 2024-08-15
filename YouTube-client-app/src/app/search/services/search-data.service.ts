@@ -6,7 +6,7 @@ import { map } from "rxjs/operators";
 import { VideoItem } from "../../youtube/models/video.model";
 import { SearchResponse } from "../models/search-response.model";
 
-@Injectable({ providedIn: "root", })
+@Injectable({ providedIn: "root" })
 export class SearchDataService {
     private apiKey: string = "AIzaSyCnl3dLz1J0Zip7eZQFWr2MaX9v2JVEaok";
     private searchUrl: string = "https://www.googleapis.com/youtube/v3/search";

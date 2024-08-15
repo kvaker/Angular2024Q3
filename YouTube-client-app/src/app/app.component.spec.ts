@@ -28,6 +28,8 @@ describe("AppComponent", () => {
 
     it("should render the title", () => {
         const compiled = fixture.nativeElement as HTMLElement;
-        expect(compiled.querySelector(".content span")?.textContent).toContain("demo-angular-jest app is running!");
+        expect(compiled.querySelector(".content span")?.textContent).toContain(
+            "demo-angular-jest app is running!",
+        );
     });
 });

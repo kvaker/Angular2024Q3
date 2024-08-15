@@ -11,7 +11,12 @@ import { SearchDataService } from "../services/search-data.service";
 @Component({
     selector: "app-search-results",
     standalone: true,
-    imports: [CommonModule, SearchItemComponent, HeaderComponent, HttpClientModule],
+    imports: [
+        CommonModule,
+        SearchItemComponent,
+        HeaderComponent,
+        HttpClientModule,
+    ],
     providers: [SearchDataService],
     templateUrl: "./search-results.component.html",
     styleUrls: ["./search-results.component.scss"],
@@ -28,8 +33,14 @@ export class SearchResultsComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        /* eslint-disable no-console */
+        console.log("ngOnInit called");
         this.dataService.searchVideos("your query").subscribe(() => {
             this.filteredResults = this.searchResults$() ? this.searchResults$()!.items : [];
+            console.log("Filtered Results:", this.filteredResults);
+            this.filteredResults.forEach((item) => {
+                console.log("Item being passed to SearchItemComponent:", item);
+            });
             const videoIds = this.filteredResults.map((item) => item.id.videoId);
             this.dataService.getVideoStatistics(videoIds).subscribe(() => {});
         });
@@ -82,5 +93,6 @@ export class SearchResultsComponent implements OnInit {
             || item.snippet.description.toLowerCase().includes(searchTermLower),
             )
             : [];
+        console.log("Filtered Results:", this.filteredResults);
     }
 }

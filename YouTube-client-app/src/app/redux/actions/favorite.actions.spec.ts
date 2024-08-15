@@ -1,6 +1,10 @@
 import { FavoriteItem } from "../../favorite/models/favorite.model";
 import {
-    addFavorite, loadFavorites, loadFavoritesFailure, loadFavoritesSuccess, removeFavorite
+    addFavorite,
+    loadFavorites,
+    loadFavoritesFailure,
+    loadFavoritesSuccess,
+    removeFavorite,
 } from "./favorite.actions";
 
 describe("Favorite Actions", () => {

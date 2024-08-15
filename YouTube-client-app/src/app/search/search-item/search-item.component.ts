@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { Store, StoreModule } from "@ngrx/store";
+import { Store } from "@ngrx/store";
 import { map } from "rxjs/operators";
 
 import { FavoriteItem } from "../../favorite/models/favorite.model";
@@ -14,7 +14,7 @@ import { SearchItemDirective } from "./search-item.directive";
 @Component({
     selector: "app-search-item",
     standalone: true,
-    imports: [CommonModule, SearchItemDirective, RouterModule, StoreModule],
+    imports: [CommonModule, SearchItemDirective, RouterModule],
     templateUrl: "./search-item.component.html",
     styleUrls: ["./search-item.component.scss"],
 })
@@ -22,9 +22,15 @@ export class SearchItemComponent implements OnInit {
     @Input() searchItem: SearchItem | null = null;
     isFavorite: boolean = false;
 
-    constructor(private store: Store<AppState>) {}
+    constructor(private store: Store<AppState>) {
+        /* eslint-disable no-console */
+        console.log("SearchItemComponent initialized");
+        console.log("Store:", this.store);
+    }
 
     ngOnInit(): void {
+        console.log("ngOnInit called");
+        console.log("Received searchItem:", this.searchItem);
         if (this.searchItem) {
             this.store
                 .select(selectFavorites)
@@ -34,6 +40,8 @@ export class SearchItemComponent implements OnInit {
                 .subscribe((isFavorite) => {
                     this.isFavorite = isFavorite;
                 });
+        } else {
+            console.warn("searchItem is null or undefined");
         }
     }
 

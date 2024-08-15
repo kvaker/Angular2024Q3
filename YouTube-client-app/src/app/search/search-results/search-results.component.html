@@ -6,6 +6,7 @@
 <main>
   <div *ngIf="searchResults$() as searchResults; else loading">
     <div *ngIf="filteredResults && filteredResults.length; else noResults">
+      <p>Results Count: {{ filteredResults.length }}</p>
       <section class="card-board" *ngIf="filteredResults.length">
         <div class="card-container">
           <app-search-item

@@ -1,7 +1,14 @@
-import { FavoriteItem } from "../favorite/models/favorite.model";
-import { VideoItem } from "../youtube/models/video.model";
+import { ActionReducerMap } from "@ngrx/store";
+
+import { favoriteReducer, FavoriteState } from "./reducers/favorite.reducer";
+import { videoReducer, VideoState } from "./reducers/video.reducer";
 
 export interface AppState {
-    favorites: FavoriteItem[];
-    videos: VideoItem[];
+    favorites: FavoriteState;
+    videos: VideoState;
 }
+
+export const appReducers: ActionReducerMap<AppState> = {
+    favorites: favoriteReducer,
+    videos: videoReducer,
+};
