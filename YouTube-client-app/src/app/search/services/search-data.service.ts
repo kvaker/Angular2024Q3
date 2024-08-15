@@ -8,7 +8,7 @@ import { SearchResponse } from "../models/search-response.model";
 
 @Injectable({ providedIn: "root" })
 export class SearchDataService {
-    private apiKey: string = "AIzaSyCnl3dLz1J0Zip7eZQFWr2MaX9v2JVEaok";
+    private apiKey: string = "AIzaSyAqZjXqcfBBRBx6wMwX942ExP75KnMelZk";
     private searchUrl: string = "https://www.googleapis.com/youtube/v3/search";
     private statsUrl: string = "https://www.googleapis.com/youtube/v3/videos";
 

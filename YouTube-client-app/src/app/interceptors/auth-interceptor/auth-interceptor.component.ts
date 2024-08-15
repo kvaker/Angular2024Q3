@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    private authToken: string = "AIzaSyCnl3dLz1J0Zip7eZQFWr2MaX9v2JVEaok";
+    private authToken: string = "AIzaSyAqZjXqcfBBRBx6wMwX942ExP75KnMelZk";
 
     constructor() {
         this.authToken = localStorage.getItem("token") || "";
