@@ -35,20 +35,25 @@ export class SearchResultsComponent implements OnInit {
     ngOnInit(): void {
         /* eslint-disable no-console */
         console.log("ngOnInit called");
-        this.dataService.searchVideos("your query").subscribe(() => {
-            this.filteredResults = this.searchResults$() ? this.searchResults$()!.items : [];
-            console.log("Filtered Results:", this.filteredResults);
-            this.filteredResults.forEach((item) => {
-                console.log("Item being passed to SearchItemComponent:", item);
-            });
-            const videoIds = this.filteredResults.map((item) => item.id.videoId);
-            this.dataService.getVideoStatistics(videoIds).subscribe((stats) => {
-                this.filteredResults = this.filteredResults.map((item, index) => ({
-                    ...item,
-                    statistics: stats[index].statistics,
-                }));
-                console.log("Updated Filtered Results with Statistics:", this.filteredResults);
-            });
+        this.dataService.searchVideos("Angular").subscribe(() => {
+            const searchResults = this.searchResults$();
+            if (searchResults) {
+                this.filteredResults = searchResults.items || [];
+                console.log("Filtered Results:", this.filteredResults);
+                const videoIds = this.filteredResults.map((item) => item.id.videoId);
+                this.dataService.getVideoStatistics(videoIds).subscribe((stats) => {
+                    this.filteredResults = this.filteredResults.map((item, index) => ({
+                        ...item,
+                        statistics: stats[index]?.statistics,
+                    }));
+                    this.filteredResults.forEach((item) => {
+                        console.log("Item:", item);
+                        console.log("Snippet:", item.snippet);
+                        console.log("Statistics:", item.statistics);
+                    });
+                    console.log("Updated Filtered Results with Statistics:", this.filteredResults);
+                });
+            }
         });
     }
 
@@ -93,12 +98,9 @@ export class SearchResultsComponent implements OnInit {
 
     onSearch(searchTerm: string) {
         const searchTermLower = searchTerm.toLowerCase();
-        this.filteredResults = this.searchResults$()
-            ? this.searchResults$()!.items.filter(
-                (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
-                    || item.snippet.description.toLowerCase().includes(searchTermLower),
-            )
-            : [];
-        console.log("Filtered Results:", this.filteredResults);
+        this.filteredResults = this.filteredResults.filter(
+            (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
+              || item.snippet.description.toLowerCase().includes(searchTermLower)
+        );
     }
 }

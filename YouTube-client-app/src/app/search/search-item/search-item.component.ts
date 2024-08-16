@@ -49,9 +49,9 @@ export class SearchItemComponent implements OnInit {
         if (!video) return;
         const favoriteItem: FavoriteItem = {
             id: video.id.videoId,
-            title: video.snippet.title,
-            description: video.snippet.description,
-            thumbnailUrl: video.snippet.thumbnails.default.url,
+            title: video.snippet.title || "Untitled",
+            description: video.snippet.description || "No description available",
+            thumbnailUrl: video.snippet.thumbnails?.default?.url || "",
             isFavorite: !this.isFavorite,
         };
 
