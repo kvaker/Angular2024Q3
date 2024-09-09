@@ -7,19 +7,27 @@
           <div class="icon-viewed">
             <img src="assets/svg/viewed.svg" alt="Viewed Icon" style="width: 12px; height: 12px" />
           </div>
-          <div class="text-viewed">{{ searchItem.statistics.viewCount || 'N/A' }}</div>
+          <div class="text-viewed">{{ searchItem.statistics.viewCount || "N/A" }}</div>
           <div class="icon-liked">
-            <img src="assets/svg/liked.svg" alt="Liked Icon" style="width: 12px; height: 12px"/>
+            <img src="assets/svg/liked.svg" alt="Liked Icon" style="width: 12px; height: 12px" />
           </div>
-          <div class="text-liked">{{ searchItem.statistics.likeCount || 'N/A' }}</div>
+          <div class="text-liked">{{ searchItem.statistics.likeCount || "N/A" }}</div>
           <div class="icon-disliked">
-            <img src="assets/svg/dislike.svg" alt="Disliked Icon" style="width: 12px; height: 12px"/>
+            <img
+              src="assets/svg/dislike.svg"
+              alt="Disliked Icon"
+              style="width: 12px; height: 12px"
+            />
           </div>
-          <div class="text-disliked">{{ searchItem.statistics.dislikeCount || 'N/A' }}</div>
+          <div class="text-disliked">{{ searchItem.statistics.dislikeCount || "N/A" }}</div>
           <div class="icon-comments">
-            <img src="assets/svg/Group 9.svg" alt="Comments Icon" style="width: 12px; height: 12px"/>
+            <img
+              src="assets/svg/Group 9.svg"
+              alt="Comments Icon"
+              style="width: 12px; height: 12px"
+            />
           </div>
-          <div class="text-comments">{{ searchItem.statistics.commentCount || 'N/A' }}</div>
+          <div class="text-comments">{{ searchItem.statistics.commentCount || "N/A" }}</div>
         </div>
         <div class="card-title">{{ searchItem.snippet.title }}</div>
         <div class="card-description">{{ searchItem.snippet.description }}</div>

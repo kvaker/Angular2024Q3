@@ -2,7 +2,7 @@ $primary-color: #2f80ed;
 $secondary-color: #4f4f4f;
 $light-gray: #e5e5e5;
 $middle-gray: #efefef;
-$font-family: 'Roboto', sans-serif;
+$font-family: "Roboto", sans-serif;
 
 header {
   background: $light-gray;
@@ -59,7 +59,7 @@ header {
     border-radius: 5px;
   }
 
-  form input[type='text'] {
+  form input[type="text"] {
     flex: 1;
     padding: 8.5px;
     border: 0px solid $secondary-color;
@@ -98,7 +98,7 @@ header {
     border-radius: 5px;
   }
 
-  form input[type='text'] {
+  form input[type="text"] {
     flex: 1;
     padding: 4.5px;
     border: 0px solid $secondary-color;
@@ -106,7 +106,7 @@ header {
     font-size: 16px;
   }
 
-  form input[type='text']:focus {
+  form input[type="text"]:focus {
     background-color: $middle-gray;
   }
   .account {

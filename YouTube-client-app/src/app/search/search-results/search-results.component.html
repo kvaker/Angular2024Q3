@@ -4,13 +4,13 @@
 ></app-header>
 
 <main>
-  <div *ngIf="searchResults$() as searchResults; else loading">
-    <div *ngIf="filteredResults && filteredResults.length; else noResults">
-      <p>Results Count: {{ filteredResults.length }}</p>
-      <section class="card-board" *ngIf="filteredResults.length">
+  <div *ngIf="searchResultsWithStats$ | async as searchResults; else loading">
+    <div *ngIf="searchResults && searchResults.length; else noResults">
+      <p>Results Count: {{ searchResults.length }}</p>
+      <section class="card-board" *ngIf="searchResults.length">
         <div class="card-container">
           <app-search-item
-            *ngFor="let item of filteredResults"
+            *ngFor="let item of searchResults"
             class="card"
             [searchItem]="item"
           ></app-search-item>

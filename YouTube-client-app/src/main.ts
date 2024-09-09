@@ -7,9 +7,7 @@ import { routes } from "./app/app.routes";
 import { appReducers } from "./app/redux/state.models";
 
 bootstrapApplication(AppComponent, {
-    providers: [provideRouter(routes, withComponentInputBinding()),
-        provideStore(appReducers),
-    ],
+    providers: [provideRouter(routes, withComponentInputBinding()), provideStore(appReducers)],
 })
 // eslint-disable-next-line no-console
     .catch((err) => console.error(err));

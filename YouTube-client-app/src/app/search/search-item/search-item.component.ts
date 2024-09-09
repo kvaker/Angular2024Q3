@@ -23,7 +23,7 @@ export class SearchItemComponent implements OnInit {
     isFavorite: boolean = false;
 
     constructor(private store: Store<AppState>) {
-        /* eslint-disable no-console */
+    /* eslint-disable no-console */
         console.log("SearchItemComponent initialized");
         console.log("Store:", this.store);
     }
