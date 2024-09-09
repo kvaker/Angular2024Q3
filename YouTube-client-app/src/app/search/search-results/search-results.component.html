@@ -1,14 +1,14 @@
-<app-header
-  (sortByChanged)="onSortByChanged($event)"
-  (searchTermChanged)="onSearch($event)"
-></app-header>
+<app-header (sortByChanged)="onSortByChanged($event)" (searchTermChanged)="onSearch($event)"></app-header>
 
-<section class="card-board" *ngIf="filteredResults && filteredResults.length">
-  <div class="card-container">
-    <app-search-item
-      *ngFor="let item of filteredResults"
-      class="card"
-      [searchItem]="item"
-    ></app-search-item>
+<main>
+  <div *ngIf="filteredResults && filteredResults.length; else noResults">
+    <section class="card-board" *ngIf="filteredResults?.length">
+      <div class="card-container">
+        <app-search-item *ngFor="let item of filteredResults" class="card" [searchItem]="item"></app-search-item>
+      </div>
+    </section>
   </div>
-</section>
+  <ng-template #noResults>
+    <p>No results found.</p>
+  </ng-template>
+</main>

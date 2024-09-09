@@ -1,0 +1,16 @@
+<app-header></app-header>
+<div class="login-container">
+    <div class="text">Login</div>
+
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value.username, loginForm.value.password)" class="login-form">
+      <input type="text" ngModel name="username" required placeholder="Username" class="login-input">
+      <input type="password" ngModel name="password" required placeholder="Password" class="login-input">
+
+      <div class="button-container">
+        <div class="registration">
+          <a href="#">Registration</a>
+        </div>
+        <button type="submit" class="button">Login</button>
+      </div>
+    </form>
+</div>

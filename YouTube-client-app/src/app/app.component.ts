@@ -1,15 +1,13 @@
+import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { RouterOutlet } from "@angular/router";
-
-import { HeaderComponent } from "./header/header.component";
 
 @Component({
     selector: "app-root",
     standalone: true,
-    imports: [HeaderComponent, RouterOutlet],
+    imports: [RouterOutlet, CommonModule, FormsModule],
     templateUrl: "./app.component.html",
     styleUrl: "./app.component.scss",
 })
-export class AppComponent {
-    title = "YouTube-client-app";
-}
+export class AppComponent {}
