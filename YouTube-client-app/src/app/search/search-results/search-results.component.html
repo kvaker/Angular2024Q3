@@ -1,5 +1,14 @@
-<div *ngIf="searchResults">
-    <div *ngFor="let item of searchResults.items">
-      <app-search-item [searchItem]="item"></app-search-item>
-    </div>
+<app-header
+  (sortByChanged)="onSortByChanged($event)"
+  (searchTermChanged)="onSearch($event)"
+></app-header>
+
+<section class="card-board" *ngIf="filteredResults && filteredResults.length">
+  <div class="card-container">
+    <app-search-item
+      *ngFor="let item of filteredResults"
+      class="card"
+      [searchItem]="item"
+    ></app-search-item>
   </div>
+</section>

@@ -9,7 +9,8 @@
     "test": "ng test",
     "serve:ssr:YouTube-client-app": "node dist/you-tube-client-app/server/server.mjs",
     "lint": "ng lint",
-    "lint-fix": "ng lint --fix"
+    "lint-fix": "ng lint --fix",
+    "prettier": "prettier --write \"src/**/*.{ts,html,scss}\""
   },
   "private": true,
   "dependencies": {
