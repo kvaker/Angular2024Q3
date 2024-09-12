@@ -80,4 +80,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     logout() {
         this.authService.logout();
     }
+
+    navigateToFavorites() {
+        this.router.navigate(["/favorites"]);
+    }
 }

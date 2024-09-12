@@ -8,13 +8,14 @@ import { FavoriteItem } from "../../favorite/models/favorite.model";
 import { addFavorite, removeFavorite } from "../../redux/actions/favorite.actions";
 import { selectFavorites } from "../../redux/selectors/favorite.selectors";
 import { AppState } from "../../redux/state.models";
+import { CardComponent } from "../../shared/components/card/card.component";
 import { SearchItem } from "../models/search-item.model";
 import { SearchItemDirective } from "./search-item.directive";
 
 @Component({
     selector: "app-search-item",
     standalone: true,
-    imports: [CommonModule, SearchItemDirective, RouterModule],
+    imports: [CommonModule, CardComponent, SearchItemDirective, RouterModule],
     templateUrl: "./search-item.component.html",
     styleUrls: ["./search-item.component.scss"],
 })
@@ -35,7 +36,10 @@ export class SearchItemComponent implements OnInit {
             this.store
                 .select(selectFavorites)
                 .pipe(
-                    map((favorites) => favorites.some((favorite) => favorite.id === this.searchItem!.id.videoId),),
+                    map(
+                        (favorites) => Array.isArray(favorites)
+              && favorites.some((favorite) => favorite.id === this.searchItem!.id.videoId),
+                    ),
                 )
                 .subscribe((isFavorite) => {
                     this.isFavorite = isFavorite;

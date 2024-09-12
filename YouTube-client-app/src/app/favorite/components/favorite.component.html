@@ -1,8 +1,5 @@
+<app-header></app-header>
 <div *ngIf="favorites$ | async as favorites">
-  <div *ngFor="let favorite of favorites">
-    <h2>{{ favorite.title }}</h2>
-    <p>{{ favorite.description }}</p>
-    <img [src]="favorite.thumbnailUrl" alt="{{ favorite.title }}" />
-    <button (click)="removeFavorite(favorite.id)">Remove from Favorites</button>
-  </div>
+  <app-card *ngFor="let favorite of favorites" [favorite]="favorite" (remove)="removeFavorite(favorite.id)">
+  </app-card>
 </div>

@@ -65,7 +65,7 @@ export class SearchResultsComponent implements OnInit {
                         if (a.snippet.publishedAt && b.snippet.publishedAt) {
                             return (
                                 new Date(a.snippet.publishedAt).getTime()
-                                - new Date(b.snippet.publishedAt).getTime()
+                - new Date(b.snippet.publishedAt).getTime()
                             );
                         }
                         return 0;
@@ -74,9 +74,9 @@ export class SearchResultsComponent implements OnInit {
                     sortedResults.sort((a, b) => {
                         if (
                             a.statistics
-                            && b.statistics
-                            && typeof Number(a.statistics.viewCount) === "number"
-                            && typeof Number(b.statistics.viewCount) === "number"
+              && b.statistics
+              && typeof Number(a.statistics.viewCount) === "number"
+              && typeof Number(b.statistics.viewCount) === "number"
                         ) {
                             return Number(b.statistics.viewCount) - Number(a.statistics.viewCount);
                         }
@@ -91,10 +91,12 @@ export class SearchResultsComponent implements OnInit {
     }
 
     onReset() {
-        this.searchResultsWithStats$ = of(this.originalResults.map((item) => ({
-            ...item,
-            statistics: item.statistics
-        })));
+        this.searchResultsWithStats$ = of(
+            this.originalResults.map((item) => ({
+                ...item,
+                statistics: item.statistics,
+            })),
+        );
     }
 
     onSearch(searchTerm: string) {
@@ -102,8 +104,8 @@ export class SearchResultsComponent implements OnInit {
         this.searchResultsWithStats$ = this.searchResultsWithStats$.pipe(
             map((results) => results.filter(
                 (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
-                || item.snippet.description.toLowerCase().includes(searchTermLower),
-            )),
+            || item.snippet.description.toLowerCase().includes(searchTermLower),
+            ),),
         );
     }
 }

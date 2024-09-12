@@ -28,12 +28,15 @@ export class SearchDataService {
             .set("type", "video")
             .set("maxResults", "10");
 
-        this.http.get<SearchResponse>(this.searchUrl, { params }).pipe(
-            map((response) => {
-                this.searchResultsSubject.next(response);
-                return response;
-            })
-        ).subscribe();
+        this.http
+            .get<SearchResponse>(this.searchUrl, { params })
+            .pipe(
+                map((response) => {
+                    this.searchResultsSubject.next(response);
+                    return response;
+                }),
+            )
+            .subscribe();
     }
 
     getVideoStatistics(videoIds: string[]): Observable<VideoItem[]> {
@@ -46,7 +49,7 @@ export class SearchDataService {
             map((response) => {
                 this.videoStatisticsSubject.next(response.items);
                 return response.items;
-            })
+            }),
         );
     }
 
@@ -60,7 +63,7 @@ export class SearchDataService {
             map((response) => {
                 const videoItem = response.items.length ? response.items[0] : null;
                 return videoItem;
-            })
+            }),
         );
     }
 }
