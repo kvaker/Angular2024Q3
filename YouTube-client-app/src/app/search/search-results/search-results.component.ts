@@ -2,7 +2,9 @@ import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { combineLatest, Observable, of } from "rxjs";
+import {
+    BehaviorSubject, combineLatest, Observable, of
+} from "rxjs";
 import { catchError, map, switchMap } from "rxjs/operators";
 
 import { HeaderComponent } from "../../core/components/header/header.component";
@@ -21,6 +23,11 @@ import { SearchDataService } from "../services/search-data.service";
 export class SearchResultsComponent implements OnInit {
     private originalResults: SearchItem[] = [];
     searchResultsWithStats$: Observable<SearchItem[]>;
+    paginatedResults$: Observable<SearchItem[]>;
+
+    currentPage$ = new BehaviorSubject<number>(1);
+    itemsPerPage: number = 20;
+    totalPages: number = 1;
 
     constructor(
         private dataService: SearchDataService,
@@ -38,6 +45,7 @@ export class SearchResultsComponent implements OnInit {
                 ]).pipe(
                     map(([items, stats]) => {
                         this.originalResults = [...items];
+                        this.totalPages = Math.ceil(items.length / this.itemsPerPage);
                         return items.map((item, index) => ({
                             ...item,
                             statistics: stats[index]?.statistics,
@@ -50,10 +58,37 @@ export class SearchResultsComponent implements OnInit {
                 );
             }),
         );
+
+        // Обновление `paginatedResults$` на основе текущей страницы
+        this.paginatedResults$ = combineLatest([this.searchResultsWithStats$, this.currentPage$]).pipe(
+            map(([results, currentPage]) => {
+                const startIndex = (currentPage - 1) * this.itemsPerPage;
+                const paginatedResults = results.slice(startIndex, startIndex + this.itemsPerPage);
+                return paginatedResults;
+            }),
+        );
     }
 
     ngOnInit(): void {
-        this.dataService.searchVideos("Angular");
+        this.dataService.searchVideos(""); // Поиск по умолчанию
+    }
+
+    goToPage(page: number) {
+        if (page >= 1 && page <= this.totalPages) {
+            this.currentPage$.next(page);
+        }
+    }
+
+    nextPage() {
+        if (this.currentPage$.value < this.totalPages) {
+            this.currentPage$.next(this.currentPage$.value + 1); // Увеличение номера текущей страницы
+        }
+    }
+
+    prevPage() {
+        if (this.currentPage$.value > 1) {
+            this.currentPage$.next(this.currentPage$.value - 1); // Уменьшение номера текущей страницы
+        }
     }
 
     onSortByChanged(field: string) {

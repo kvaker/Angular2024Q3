@@ -10,10 +10,10 @@ export const selectFavoritesState = createFeatureSelector<AppState, FavoriteStat
 
 export const selectFavoriteItems = createSelector(
     selectFavoritesState,
-    (state: FavoriteState) => state.favorites
+    (state: FavoriteState) => state.favorites,
 );
 
 export const selectFavoriteError = createSelector(
     selectFavoritesState,
-    (state: FavoriteState) => state.error
+    (state: FavoriteState) => state.error,
 );

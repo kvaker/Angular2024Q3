@@ -23,15 +23,9 @@ export class SearchItemComponent implements OnInit {
     @Input() searchItem: SearchItem | null = null;
     isFavorite: boolean = false;
 
-    constructor(private store: Store<AppState>) {
-    /* eslint-disable no-console */
-        console.log("SearchItemComponent initialized");
-        console.log("Store:", this.store);
-    }
+    constructor(private store: Store<AppState>) {}
 
     ngOnInit(): void {
-        console.log("ngOnInit called");
-        console.log("Received searchItem:", this.searchItem);
         if (this.searchItem) {
             this.store
                 .select(selectFavorites)
