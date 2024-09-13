@@ -53,7 +53,7 @@ export class SearchResultsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.dataService.searchVideos("Angular");
+        this.dataService.searchVideos("");
     }
 
     onSortByChanged(field: string) {
