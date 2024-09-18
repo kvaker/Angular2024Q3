@@ -15,7 +15,7 @@
     </div>
     <nav>
       <ul>
-          <button (click)="navigateToFavorites()"><i class="fa fa-heart"></i> Favorites</button>
+        <button (click)="navigateToFavorites()"><i class="fa fa-heart"></i> Favorites</button>
       </ul>
     </nav>
     <button class="sort-button" *ngIf="!isLoggedIn" (click)="router.navigate(['/login'])">

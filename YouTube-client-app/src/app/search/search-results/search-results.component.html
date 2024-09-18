@@ -4,17 +4,24 @@
 ></app-header>
 
 <main>
-  <div *ngIf="searchResultsWithStats$ | async as searchResults; else loading">
-    <div *ngIf="searchResults && searchResults.length; else noResults">
-      <section class="card-board" *ngIf="searchResults.length">
+  <div *ngIf="paginatedResults$ | async as paginatedResults; else loading">
+    <div *ngIf="paginatedResults && paginatedResults.length; else noResults">
+      <section class="card-board">
         <div class="card-container">
           <app-search-item
-            *ngFor="let item of searchResults"
+            *ngFor="let searchItem of paginatedResults"
+            [searchItem]="searchItem"
             class="card"
-            [searchItem]="item"
           ></app-search-item>
         </div>
       </section>
+      <div class="pagination-controls">
+        <button (click)="prevPage()" [disabled]="(currentPage$ | async) === 1">Previous</button>
+        <span>Page {{ currentPage$ | async }} of {{ totalPages }}</span>
+        <button (click)="nextPage()" [disabled]="(currentPage$ | async) === totalPages">
+          Next
+        </button>
+      </div>
     </div>
     <ng-template #noResults>
       <p>No results found.</p>

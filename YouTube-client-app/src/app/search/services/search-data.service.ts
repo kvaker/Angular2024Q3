@@ -26,7 +26,7 @@ export class SearchDataService {
             .set("q", query)
             .set("part", "snippet")
             .set("type", "video")
-            .set("maxResults", "20");
+            .set("maxResults", "500");
 
         this.http
             .get<SearchResponse>(this.searchUrl, { params })

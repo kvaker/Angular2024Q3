@@ -1,5 +1,9 @@
 <app-header></app-header>
 <div *ngIf="favorites$ | async as favorites">
-  <app-card *ngFor="let favorite of favorites" [favorite]="favorite" (remove)="removeFavorite(favorite.id)">
+  <app-card
+    *ngFor="let favorite of favorites"
+    [favorite]="favorite"
+    (remove)="removeFavorite(favorite.id)"
+  >
   </app-card>
 </div>

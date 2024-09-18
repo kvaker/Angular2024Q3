@@ -33,7 +33,7 @@ export class FavoritePageComponent implements OnInit {
     }
 
     toggleFavorite(id: string): void {
-        const isFavorite = FavoritePageComponent.isFavorite(id);
+        const isFavorite = FavoritePageComponent.isFavorite();
         if (isFavorite) {
             this.store.dispatch(removeFavorite({ id }));
         } else {
@@ -42,7 +42,7 @@ export class FavoritePageComponent implements OnInit {
         }
     }
 
-    private static isFavorite(id: string): boolean {
+    private static isFavorite(): boolean {
         return false;
     }
     private static getFavoriteItemById(id: string): FavoriteItem {
