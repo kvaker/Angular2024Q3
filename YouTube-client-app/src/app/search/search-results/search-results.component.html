@@ -18,7 +18,9 @@
       <div class="pagination-controls">
         <button (click)="prevPage()" [disabled]="(currentPage$ | async) === 1">Previous</button>
         <span>Page {{ currentPage$ | async }} of {{ totalPages }}</span>
-        <button (click)="nextPage()" [disabled]="(currentPage$ | async) === totalPages">Next</button>
+        <button (click)="nextPage()" [disabled]="(currentPage$ | async) === totalPages">
+          Next
+        </button>
       </div>
     </div>
     <ng-template #noResults>

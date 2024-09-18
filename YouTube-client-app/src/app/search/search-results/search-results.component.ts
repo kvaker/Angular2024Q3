@@ -59,18 +59,18 @@ export class SearchResultsComponent implements OnInit {
             }),
         );
 
-        // Обновление `paginatedResults$` на основе текущей страницы
         this.paginatedResults$ = combineLatest([this.searchResultsWithStats$, this.currentPage$]).pipe(
             map(([results, currentPage]) => {
                 const startIndex = (currentPage - 1) * this.itemsPerPage;
                 const paginatedResults = results.slice(startIndex, startIndex + this.itemsPerPage);
+
                 return paginatedResults;
             }),
         );
     }
 
     ngOnInit(): void {
-        this.dataService.searchVideos(""); // Поиск по умолчанию
+        this.dataService.searchVideos("");
     }
 
     goToPage(page: number) {
@@ -81,13 +81,13 @@ export class SearchResultsComponent implements OnInit {
 
     nextPage() {
         if (this.currentPage$.value < this.totalPages) {
-            this.currentPage$.next(this.currentPage$.value + 1); // Увеличение номера текущей страницы
+            this.currentPage$.next(this.currentPage$.value + 1);
         }
     }
 
     prevPage() {
         if (this.currentPage$.value > 1) {
-            this.currentPage$.next(this.currentPage$.value - 1); // Уменьшение номера текущей страницы
+            this.currentPage$.next(this.currentPage$.value - 1);
         }
     }
 
@@ -96,32 +96,29 @@ export class SearchResultsComponent implements OnInit {
             map((results) => {
                 const sortedResults = [...results];
                 if (field === "date") {
-                    sortedResults.sort((a, b) => {
-                        if (a.snippet.publishedAt && b.snippet.publishedAt) {
-                            return (
-                                new Date(a.snippet.publishedAt).getTime()
-                - new Date(b.snippet.publishedAt).getTime()
-                            );
-                        }
-                        return 0;
-                    });
+                    sortedResults.sort(
+                        (a, b) => new Date(b.snippet.publishedAt).getTime() - new Date(a.snippet.publishedAt).getTime()
+                    );
                 } else if (field === "count-of-views") {
-                    sortedResults.sort((a, b) => {
-                        if (
-                            a.statistics
-              && b.statistics
-              && typeof Number(a.statistics.viewCount) === "number"
-              && typeof Number(b.statistics.viewCount) === "number"
-                        ) {
-                            return Number(b.statistics.viewCount) - Number(a.statistics.viewCount);
-                        }
-                        return 0;
-                    });
+                    sortedResults.sort(
+                        (a, b) => Number(b.statistics?.viewCount || 0) - Number(a.statistics?.viewCount || 0)
+                    );
                 } else if (field === "word-or-sentence") {
                     sortedResults.sort((a, b) => a.snippet.title.localeCompare(b.snippet.title));
                 }
+                this.totalPages = Math.ceil(sortedResults.length / this.itemsPerPage);
                 return sortedResults;
-            }),
+            })
+        );
+        this.currentPage$.next(1);
+        this.updatePaginatedResults();
+    }
+    updatePaginatedResults() {
+        this.paginatedResults$ = combineLatest([this.searchResultsWithStats$, this.currentPage$]).pipe(
+            map(([results, currentPage]) => {
+                const startIndex = (currentPage - 1) * this.itemsPerPage;
+                return results.slice(startIndex, startIndex + this.itemsPerPage);
+            })
         );
     }
 
@@ -137,10 +134,16 @@ export class SearchResultsComponent implements OnInit {
     onSearch(searchTerm: string) {
         const searchTermLower = searchTerm.toLowerCase();
         this.searchResultsWithStats$ = this.searchResultsWithStats$.pipe(
-            map((results) => results.filter(
-                (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
-            || item.snippet.description.toLowerCase().includes(searchTermLower),
-            ),),
+            map((results) => {
+                const filteredResults = results.filter(
+                    (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
+                  || item.snippet.description.toLowerCase().includes(searchTermLower)
+                );
+                this.totalPages = Math.ceil(filteredResults.length / this.itemsPerPage);
+                this.currentPage$.next(1);
+                return filteredResults;
+            })
         );
+        this.updatePaginatedResults();
     }
 }
