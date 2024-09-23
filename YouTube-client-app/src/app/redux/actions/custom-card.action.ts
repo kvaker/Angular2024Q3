@@ -4,10 +4,10 @@ import { CustomCard } from "../../search/models/search-item.model";
 
 export const addCustomCard = createAction(
     "[Admin Page] Add Custom Card",
-    props<{ card: CustomCard }>()
+    props<{ card: CustomCard }>(),
 );
 
 export const removeCustomCard = createAction(
     "[Video List] Remove Custom Card",
-    props<{ id: string }>()
+    props<{ id: string }>(),
 );

@@ -13,6 +13,16 @@
             [searchItem]="searchItem"
             class="card"
           ></app-search-item>
+          <div class="card-list">
+            <div *ngFor="let card of (customCards$ | async)" class="card">
+              <h3>{{ card.title }}</h3>
+              <p>{{ card.description }}</p>
+              <img [src]="card.imageLink" alt="Card Image" class="card-image" />
+              <p>Video: <a [href]="card.videoLink">{{ card.videoLink }}</a></p>
+              <p>Creation Date: {{ card.creationDate }}</p>
+              <p>Tags: {{ card.tags.join(', ') }}</p>
+            </div>
+          </div>
         </div>
       </section>
       <div class="pagination-controls">

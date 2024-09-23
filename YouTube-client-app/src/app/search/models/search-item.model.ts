@@ -64,4 +64,5 @@ export interface CustomCard {
     imageLink: string;
     videoLink: string;
     creationDate: string;
+    tags: string[];
 }

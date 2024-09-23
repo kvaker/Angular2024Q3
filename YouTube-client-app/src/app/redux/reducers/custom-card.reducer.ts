@@ -20,5 +20,5 @@ export const customCardReducer = createReducer(
     on(removeCustomCard, (state, { id }) => ({
         ...state,
         customCards: state.customCards.filter((card) => card.id !== id),
-    }))
+    })),
 );
