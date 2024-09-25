@@ -18,6 +18,7 @@ import { AuthInterceptor } from "./interceptors/auth-interceptor/auth-intercepto
 import { VideoEffects } from "./redux/effects/video.effects";
 import { customCardReducer } from "./redux/reducers/custom-card.reducer";
 import { favoriteReducer } from "./redux/reducers/favorite.reducer";
+import { videoReducer } from "./redux/reducers/video.reducer";
 import { AppStoreModule } from "./redux/store.module";
 import { SearchDataService } from "./search/services/search-data.service";
 import { AdminComponent } from "./youtube/pages/admin/admin.component";
@@ -40,7 +41,7 @@ import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-
         StoreDevtoolsModule.instrument({ maxAge: 25 }),
         FormsModule,
         ReactiveFormsModule,
-        StoreModule.forRoot({ favorites: favoriteReducer, customCards: customCardReducer }),
+        StoreModule.forRoot({ favorites: favoriteReducer, customCards: customCardReducer, videos: videoReducer }),
         AppRoutingModule,
     ],
     providers: [

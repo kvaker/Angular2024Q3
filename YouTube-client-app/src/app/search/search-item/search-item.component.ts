@@ -26,6 +26,7 @@ export class SearchItemComponent implements OnInit {
     constructor(private store: Store<AppState>) {}
 
     ngOnInit(): void {
+        console.log("Received searchItem:", this.searchItem);
         if (this.searchItem) {
             this.store
                 .select(selectFavorites)

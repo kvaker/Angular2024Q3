@@ -143,33 +143,18 @@
           formControlName="tag"
           class="admin-input"
           [ngClass]="{
-            error:
-              tag.invalid && (tag.dirty || tag.touched)
+            error: tag.invalid && (tag.dirty || tag.touched),
           }"
         />
-        <div
-          *ngIf="tag.invalid && (tag.dirty || tag.touched)"
-        >
-          Tag is required
-        </div>
+        <div *ngIf="tag.invalid && (tag.dirty || tag.touched)">Tag is required</div>
         <div class="button-container">
-          <button
-            type="button"
-            (click)="removeTag(i)"
-            *ngIf="tagControls.length > 1"
-          >
+          <button type="button" (click)="removeTag(i)" *ngIf="tagControls.length > 1">
             Delete tag
           </button>
         </div>
       </div>
     </div>
-    <button
-    type="button"
-    (click)="addTag()"
-    *ngIf="tagControls.length < 5"
-  >
-    Add tag
-  </button>
+    <button type="button" (click)="addTag()" *ngIf="tagControls.length < 5">Add tag</button>
     <div class="button-container">
       <button type="submit" [disabled]="!adminForm.valid" class="button">Create card</button>
       <button type="button" (click)="resetForm()" class="button">Reset</button>

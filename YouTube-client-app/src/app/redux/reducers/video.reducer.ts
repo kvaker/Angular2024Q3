@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 
 import { VideoItem } from "../../youtube/models/video.model";
-import { loadVideos, loadVideosFailure, loadVideosSuccess } from "../actions/video.actions";
+import * as VideoActions from "../actions/video.actions";
 
 export interface VideoState {
     videos: VideoItem[];
@@ -17,7 +17,15 @@ export const initialState: VideoState = {
 
 export const videoReducer = createReducer(
     initialState,
-    on(loadVideos, (state) => ({ ...state, loading: true })),
-    on(loadVideosSuccess, (state, { videos }) => ({ ...state, loading: false, videos })),
-    on(loadVideosFailure, (state, { error }) => ({ ...state, loading: false, error })),
+    on(VideoActions.loadVideos, (state) => ({ ...state, loading: true, error: null })),
+    on(VideoActions.loadVideosSuccess, (state, { videos }) => ({
+        ...state,
+        videos,
+        loading: false,
+    })),
+    on(VideoActions.loadVideosFailure, (state, { error }) => ({
+        ...state,
+        loading: false,
+        error,
+    }))
 );

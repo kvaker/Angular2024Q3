@@ -27,7 +27,11 @@ export class AdminComponent implements OnInit {
     adminForm: FormGroup = new FormGroup({});
     customCards: CustomCard[] = [];
 
-    constructor(private formBuilder: FormBuilder, private store: Store, public customCardService: CustomCardService) {
+    constructor(
+        private formBuilder: FormBuilder,
+        private store: Store,
+        public customCardService: CustomCardService,
+    ) {
         this.adminForm = this.formBuilder.group({
             title: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
             description: ["", [Validators.maxLength(500)]],

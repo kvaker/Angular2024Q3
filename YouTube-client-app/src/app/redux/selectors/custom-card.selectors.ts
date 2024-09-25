@@ -6,5 +6,5 @@ export const selectCustomCardState = createFeatureSelector<CustomCardState>("cus
 
 export const selectAllCustomCards = createSelector(
     selectCustomCardState,
-    (state: CustomCardState) => state.customCards
+    (state: CustomCardState) => state.customCards,
 );
