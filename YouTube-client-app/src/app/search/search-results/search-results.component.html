@@ -8,6 +8,19 @@
     <div *ngIf="paginatedResults && paginatedResults.length; else noResults">
       <section class="card-board">
         <div class="card-container">
+          <div *ngFor="let card of customCards$ | async" class="card">
+            <div class="card-content">
+              <div class="card-title">{{ card.title }}</div>
+              <div class="card-description">{{ card.description }}</div>
+              <p>
+                Video: <a [href]="card.videoLink">{{ card.videoLink }}</a>
+              </p>
+              <div class="card-description">Creation Date: {{ card.creationDate }}</div>
+              <div class="card-description">Tags: {{ card.tags.join(", ") }}</div>
+              <button (click)="onDelete(card.id)">Delete</button>
+              <div appSearchItem class="card-color"></div>
+            </div>
+          </div>
           <app-search-item
             *ngFor="let searchItem of paginatedResults"
             [searchItem]="searchItem"

@@ -135,41 +135,26 @@
       </div>
     </div>
     <div formArrayName="tags">
-      <div *ngFor="let tag of adminForm.get('tags')?.value; let i = index" class="tag-container">
+      <div *ngFor="let tag of tagControls; let i = index" [formGroupName]="i" class="tag-container">
         <label for="tag{{ i }}">Tag {{ i + 1 }}:</label>
         <input
           type="text"
           id="tag{{ i }}"
-          formControlName="{{ i }}"
+          formControlName="tag"
           class="admin-input"
           [ngClass]="{
-            error:
-              adminForm.get('tags.' + i)?.invalid &&
-              (adminForm.get('tags.' + i)?.dirty || adminForm.get('tags.' + i)?.touched),
+            error: tag.invalid && (tag.dirty || tag.touched),
           }"
         />
-        <div
-          *ngIf="
-            adminForm.get('tags.' + i)?.invalid &&
-            (adminForm.get('tags.' + i)?.dirty || adminForm.get('tags.' + i)?.touched)
-          "
-        >
-          Tag is required
-        </div>
+        <div *ngIf="tag.invalid && (tag.dirty || tag.touched)">Tag is required</div>
         <div class="button-container">
-          <button
-            type="button"
-            (click)="removeTag(i)"
-            *ngIf="adminForm.get('tags')?.value.length > 1"
-          >
+          <button type="button" (click)="removeTag(i)" *ngIf="tagControls.length > 1">
             Delete tag
           </button>
         </div>
       </div>
     </div>
-    <button type="button" (click)="addTag()" *ngIf="adminForm.get('tags')?.value.length < 5">
-      Add tag
-    </button>
+    <button type="button" (click)="addTag()" *ngIf="tagControls.length < 5">Add tag</button>
     <div class="button-container">
       <button type="submit" [disabled]="!adminForm.valid" class="button">Create card</button>
       <button type="button" (click)="resetForm()" class="button">Reset</button>

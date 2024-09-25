@@ -2,13 +2,18 @@ import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { Store } from "@ngrx/store";
 import {
     BehaviorSubject, combineLatest, Observable, of
 } from "rxjs";
-import { catchError, map, switchMap } from "rxjs/operators";
+import {
+    catchError, map, shareReplay, switchMap
+} from "rxjs/operators";
 
 import { HeaderComponent } from "../../core/components/header/header.component";
-import { SearchItem } from "../models/search-item.model";
+import * as CardActions from "../../redux/actions/custom-card.action";
+import { selectAllCustomCards } from "../../redux/selectors/custom-card.selectors";
+import { CustomCard, SearchItem } from "../models/search-item.model";
 import { SearchItemComponent } from "../search-item/search-item.component";
 import { SearchDataService } from "../services/search-data.service";
 
@@ -24,7 +29,7 @@ export class SearchResultsComponent implements OnInit {
     private originalResults: SearchItem[] = [];
     searchResultsWithStats$: Observable<SearchItem[]>;
     paginatedResults$: Observable<SearchItem[]>;
-
+    customCards$: Observable<CustomCard[]>;
     currentPage$ = new BehaviorSubject<number>(1);
     itemsPerPage: number = 20;
     totalPages: number = 1;
@@ -32,39 +37,93 @@ export class SearchResultsComponent implements OnInit {
     constructor(
         private dataService: SearchDataService,
         private route: ActivatedRoute,
+        private store: Store,
     ) {
+        this.customCards$ = this.store.select(selectAllCustomCards);
+
+        function mapCustomCardToSearchItem(customCard: CustomCard): SearchItem {
+            return {
+                kind: "youtube#searchResult",
+                etag: "custom-card-etag",
+                id: {
+                    kind: "youtube#video",
+                    videoId: customCard.id,
+                },
+                snippet: {
+                    publishedAt: customCard.creationDate,
+                    channelId: "",
+                    title: customCard.title,
+                    description: customCard.description,
+                    thumbnails: {
+                        default: {
+                            url: customCard.imageLink,
+                            width: 120,
+                            height: 90,
+                        },
+                        medium: {
+                            url: customCard.imageLink,
+                            width: 320,
+                            height: 180,
+                        },
+                        high: {
+                            url: customCard.imageLink,
+                            width: 480,
+                            height: 360,
+                        },
+                    },
+                    channelTitle: "Custom Channel",
+                    tags: [],
+                    categoryId: "0",
+                    liveBroadcastContent: "none",
+                    localized: {
+                        title: customCard.title,
+                        description: customCard.description,
+                    },
+                    defaultAudioLanguage: "en",
+                },
+                statistics: {
+                    viewCount: "0",
+                    likeCount: "0",
+                    dislikeCount: "0",
+                    favoriteCount: "0",
+                    commentCount: "0",
+                },
+            };
+        }
+
         this.searchResultsWithStats$ = this.dataService.searchResults$.pipe(
             switchMap((searchResults) => {
                 if (!searchResults || !searchResults.items) {
-                    return of([]);
+                    return this.customCards$.pipe(
+                        map((customCards) => customCards.map(mapCustomCardToSearchItem)),
+                    );
                 }
                 const videoIds = searchResults.items.map((item) => item.id.videoId);
-                return combineLatest([
-                    of(searchResults.items),
-                    this.dataService.getVideoStatistics(videoIds),
-                ]).pipe(
-                    map(([items, stats]) => {
-                        this.originalResults = [...items];
-                        this.totalPages = Math.ceil(items.length / this.itemsPerPage);
-                        return items.map((item, index) => ({
+                return this.dataService.getVideoStatistics(videoIds).pipe(
+                    map((stats) => {
+                        this.originalResults = [...searchResults.items];
+                        this.totalPages = Math.ceil(searchResults.items.length / this.itemsPerPage);
+                        return searchResults.items.map((item, index) => ({
                             ...item,
                             statistics: stats[index]?.statistics,
                         }));
                     }),
                     catchError((error) => {
                         console.error("Error fetching statistics:", error);
-                        return of([]);
+                        return of([] as SearchItem[]);
                     }),
                 );
             }),
+            switchMap((results) => this.customCards$.pipe(
+                map((customCards) => results.concat(customCards.map(mapCustomCardToSearchItem))),
+            ),),
+            shareReplay(1),
         );
 
         this.paginatedResults$ = combineLatest([this.searchResultsWithStats$, this.currentPage$]).pipe(
             map(([results, currentPage]) => {
                 const startIndex = (currentPage - 1) * this.itemsPerPage;
-                const paginatedResults = results.slice(startIndex, startIndex + this.itemsPerPage);
-
-                return paginatedResults;
+                return results.slice(startIndex, startIndex + this.itemsPerPage);
             }),
         );
     }
@@ -95,30 +154,38 @@ export class SearchResultsComponent implements OnInit {
         this.searchResultsWithStats$ = this.searchResultsWithStats$.pipe(
             map((results) => {
                 const sortedResults = [...results];
+
                 if (field === "date") {
                     sortedResults.sort(
-                        (a, b) => new Date(b.snippet.publishedAt).getTime() - new Date(a.snippet.publishedAt).getTime()
+                        (a, b) => new Date(b.snippet.publishedAt).getTime() - new Date(a.snippet.publishedAt).getTime(),
                     );
                 } else if (field === "count-of-views") {
                     sortedResults.sort(
-                        (a, b) => Number(b.statistics?.viewCount || 0) - Number(a.statistics?.viewCount || 0)
+                        (a, b) => Number(b.statistics?.viewCount || 0) - Number(a.statistics?.viewCount || 0),
                     );
                 } else if (field === "word-or-sentence") {
                     sortedResults.sort((a, b) => a.snippet.title.localeCompare(b.snippet.title));
                 }
+
                 this.totalPages = Math.ceil(sortedResults.length / this.itemsPerPage);
                 return sortedResults;
-            })
+            }),
         );
+
         this.currentPage$.next(1);
         this.updatePaginatedResults();
     }
+
+    onDelete(id: string) {
+        this.store.dispatch(CardActions.removeCustomCard({ id }));
+    }
+
     updatePaginatedResults() {
         this.paginatedResults$ = combineLatest([this.searchResultsWithStats$, this.currentPage$]).pipe(
             map(([results, currentPage]) => {
                 const startIndex = (currentPage - 1) * this.itemsPerPage;
                 return results.slice(startIndex, startIndex + this.itemsPerPage);
-            })
+            }),
         );
     }
 
@@ -129,21 +196,25 @@ export class SearchResultsComponent implements OnInit {
                 statistics: item.statistics,
             })),
         );
+        this.updatePaginatedResults();
     }
 
     onSearch(searchTerm: string) {
         const searchTermLower = searchTerm.toLowerCase();
+
         this.searchResultsWithStats$ = this.searchResultsWithStats$.pipe(
             map((results) => {
                 const filteredResults = results.filter(
                     (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
-                  || item.snippet.description.toLowerCase().includes(searchTermLower)
+            || item.snippet.description.toLowerCase().includes(searchTermLower),
                 );
+
                 this.totalPages = Math.ceil(filteredResults.length / this.itemsPerPage);
-                this.currentPage$.next(1);
                 return filteredResults;
-            })
+            }),
         );
+
+        this.currentPage$.next(1);
         this.updatePaginatedResults();
     }
 }

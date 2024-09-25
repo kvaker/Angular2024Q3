@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { EffectsModule } from "@ngrx/effects";
+import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 
 import { AppComponent } from "./app.component";
@@ -15,7 +16,9 @@ import { HeaderComponent } from "./core/components/header/header.component";
 import { FavoritePageComponent } from "./favorite/components/favorite.component";
 import { AuthInterceptor } from "./interceptors/auth-interceptor/auth-interceptor.component";
 import { VideoEffects } from "./redux/effects/video.effects";
+import { customCardReducer } from "./redux/reducers/custom-card.reducer";
 import { favoriteReducer } from "./redux/reducers/favorite.reducer";
+import { videoReducer } from "./redux/reducers/video.reducer";
 import { AppStoreModule } from "./redux/store.module";
 import { SearchDataService } from "./search/services/search-data.service";
 import { AdminComponent } from "./youtube/pages/admin/admin.component";
@@ -38,7 +41,11 @@ import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-
         StoreDevtoolsModule.instrument({ maxAge: 25 }),
         FormsModule,
         ReactiveFormsModule,
-        StoreModule.forRoot({ favorites: favoriteReducer }),
+        StoreModule.forRoot({
+            favorites: favoriteReducer,
+            customCards: customCardReducer,
+            videos: videoReducer,
+        }),
         AppRoutingModule,
     ],
     providers: [
