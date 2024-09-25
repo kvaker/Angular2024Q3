@@ -8,45 +8,21 @@ import { VideoState } from "../reducers/video.reducer";
 export const selectVideoState = createFeatureSelector<VideoState>("videos");
 export const selectCustomCardState = createFeatureSelector<CustomCardState>("customCards");
 
-export const selectAllVideos = createSelector(
-    selectVideoState,
-    (state: VideoState) => {
-        console.log("Current videos state:", state.videos); // Логирование состояния видео
-        return state.videos;
-    },
-);
+export const selectAllVideos = createSelector(selectVideoState, (state: VideoState) => state.videos);
 
 export const selectAllCustomCards = createSelector(
     selectCustomCardState,
-    (state: CustomCardState) => {
-        console.log("Current custom cards state:", state.customCards); // Логирование состояния кастомных карточек
-        return state.customCards;
-    },
+    (state: CustomCardState) => state.customCards,
 );
 
-export const selectVideosLoading = createSelector(
-    selectVideoState,
-    (state: VideoState) => {
-        console.log("Videos loading state:", state.loading); // Логирование состояния загрузки
-        return state.loading;
-    },
-);
+export const selectVideosLoading = createSelector(selectVideoState, (state: VideoState) => state.loading);
 
-export const selectVideosError = createSelector(
-    selectVideoState,
-    (state: VideoState) => {
-        console.log("Videos error state:", state.error); // Логирование состояния ошибки
-        return state.error;
-    },
-);
+export const selectVideosError = createSelector(selectVideoState, (state: VideoState) => state.error);
 
 export const selectVideosWithCustomCards = createSelector(
     selectAllVideos,
     selectAllCustomCards,
     (videos: VideoItem[], customCards): SearchItem[] => {
-        console.log("Videos from state:", videos); // Логирование полученных видео
-        console.log("Custom cards from state:", customCards); // Логирование полученных кастомных карточек
-
         const customCardItems: SearchItem[] = customCards.map((card: CustomCard) => ({
             kind: "custom#video",
             etag: "custom-card-etag",
@@ -107,7 +83,6 @@ export const selectVideosWithCustomCards = createSelector(
         }));
 
         const combinedItems = [...videoItems, ...customCardItems];
-        console.log("Combined video and custom card items:", combinedItems); // Логирование данных
         return combinedItems;
     },
 );

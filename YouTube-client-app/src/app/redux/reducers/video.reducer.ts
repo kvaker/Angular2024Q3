@@ -27,5 +27,5 @@ export const videoReducer = createReducer(
         ...state,
         loading: false,
         error,
-    }))
+    })),
 );

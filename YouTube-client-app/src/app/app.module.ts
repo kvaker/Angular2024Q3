@@ -41,7 +41,11 @@ import { NotFoundPageComponent } from "./youtube/pages/not-found-page/not-found-
         StoreDevtoolsModule.instrument({ maxAge: 25 }),
         FormsModule,
         ReactiveFormsModule,
-        StoreModule.forRoot({ favorites: favoriteReducer, customCards: customCardReducer, videos: videoReducer }),
+        StoreModule.forRoot({
+            favorites: favoriteReducer,
+            customCards: customCardReducer,
+            videos: videoReducer,
+        }),
         AppRoutingModule,
     ],
     providers: [

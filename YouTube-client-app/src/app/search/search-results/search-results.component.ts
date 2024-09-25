@@ -11,6 +11,7 @@ import {
 } from "rxjs/operators";
 
 import { HeaderComponent } from "../../core/components/header/header.component";
+import * as CardActions from "../../redux/actions/custom-card.action";
 import { selectAllCustomCards } from "../../redux/selectors/custom-card.selectors";
 import { CustomCard, SearchItem } from "../models/search-item.model";
 import { SearchItemComponent } from "../search-item/search-item.component";
@@ -36,7 +37,7 @@ export class SearchResultsComponent implements OnInit {
     constructor(
         private dataService: SearchDataService,
         private route: ActivatedRoute,
-        private store: Store
+        private store: Store,
     ) {
         this.customCards$ = this.store.select(selectAllCustomCards);
 
@@ -68,7 +69,7 @@ export class SearchResultsComponent implements OnInit {
                             url: customCard.imageLink,
                             width: 480,
                             height: 360,
-                        }
+                        },
                     },
                     channelTitle: "Custom Channel",
                     tags: [],
@@ -78,15 +79,15 @@ export class SearchResultsComponent implements OnInit {
                         title: customCard.title,
                         description: customCard.description,
                     },
-                    defaultAudioLanguage: "en"
+                    defaultAudioLanguage: "en",
                 },
                 statistics: {
                     viewCount: "0",
                     likeCount: "0",
                     dislikeCount: "0",
                     favoriteCount: "0",
-                    commentCount: "0"
-                }
+                    commentCount: "0",
+                },
             };
         }
 
@@ -94,7 +95,7 @@ export class SearchResultsComponent implements OnInit {
             switchMap((searchResults) => {
                 if (!searchResults || !searchResults.items) {
                     return this.customCards$.pipe(
-                        map((customCards) => customCards.map(mapCustomCardToSearchItem))
+                        map((customCards) => customCards.map(mapCustomCardToSearchItem)),
                     );
                 }
                 const videoIds = searchResults.items.map((item) => item.id.videoId);
@@ -110,13 +111,13 @@ export class SearchResultsComponent implements OnInit {
                     catchError((error) => {
                         console.error("Error fetching statistics:", error);
                         return of([] as SearchItem[]);
-                    })
+                    }),
                 );
             }),
             switchMap((results) => this.customCards$.pipe(
-                map((customCards) => results.concat(customCards.map(mapCustomCardToSearchItem)))
-            )),
-            shareReplay(1)
+                map((customCards) => results.concat(customCards.map(mapCustomCardToSearchItem))),
+            ),),
+            shareReplay(1),
         );
 
         this.paginatedResults$ = combineLatest([this.searchResultsWithStats$, this.currentPage$]).pipe(
@@ -173,6 +174,10 @@ export class SearchResultsComponent implements OnInit {
 
         this.currentPage$.next(1);
         this.updatePaginatedResults();
+    }
+
+    onDelete(id: string) {
+        this.store.dispatch(CardActions.removeCustomCard({ id }));
     }
 
     updatePaginatedResults() {
