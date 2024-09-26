@@ -101,7 +101,6 @@ export class SearchResultsComponent implements OnInit {
                 const videoIds = searchResults.items.map((item) => item.id.videoId);
                 return this.dataService.getVideoStatistics(videoIds).pipe(
                     map((stats) => {
-                        this.originalResults = [...searchResults.items];
                         this.totalPages = Math.ceil(searchResults.items.length / this.itemsPerPage);
                         return searchResults.items.map((item, index) => ({
                             ...item,
@@ -200,21 +199,7 @@ export class SearchResultsComponent implements OnInit {
     }
 
     onSearch(searchTerm: string) {
-        const searchTermLower = searchTerm.toLowerCase();
-
-        this.searchResultsWithStats$ = this.searchResultsWithStats$.pipe(
-            map((results) => {
-                const filteredResults = results.filter(
-                    (item) => item.snippet.title.toLowerCase().includes(searchTermLower)
-            || item.snippet.description.toLowerCase().includes(searchTermLower),
-                );
-
-                this.totalPages = Math.ceil(filteredResults.length / this.itemsPerPage);
-                return filteredResults;
-            }),
-        );
-
+        this.dataService.searchVideos(searchTerm);
         this.currentPage$.next(1);
-        this.updatePaginatedResults();
     }
 }
