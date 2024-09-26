@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         event.preventDefault();
         const input = event.target as HTMLInputElement;
         const searchTerm = input?.value?.trim() || "";
-        this.searchTermChanged.emit(searchTerm);
+        this.searchTerms.next(searchTerm);
     }
 
     logout() {
