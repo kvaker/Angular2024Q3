@@ -62,25 +62,16 @@
     </div>
     <div>
       <label for="imageLink">Img</label>
-      <input
-        type="text"
-        id="imageLink"
-        formControlName="imageLink"
-        class="admin-input"
-        [ngClass]="{
-          error:
-            adminForm.get('imageLink')?.invalid &&
-            (adminForm.get('imageLink')?.dirty || adminForm.get('imageLink')?.touched),
-        }"
-      />
-      <div
-        *ngIf="
-          adminForm.get('imageLink')?.errors?.['required'] &&
-          (adminForm.get('imageLink')?.dirty || adminForm.get('imageLink')?.touched)
-        "
-      >
-        Please enter a link to the image
-      </div>
+  <input
+    type="file"
+    id="imageLink"
+    (change)="onFileSelected($event)"
+    accept="image/*"
+  />
+  <div *ngIf="imagePreview">
+    <h4>Preview:</h4>
+    <img [src]="imagePreview" alt="Image Preview" style="max-width: 200px; max-height: 200px;" />
+  </div>
     </div>
     <div>
       <label for="videoLink">Link video</label>
