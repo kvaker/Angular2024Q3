@@ -36,7 +36,7 @@
         </button>
         <button class="card-button" [routerLink]="['/video', searchItem.id]">more...</button>
       </div>
-      <div appSearchItem class="card-color"></div>
+      <div appSearchItem [publishedDate]="searchItem.snippet.publishedAt" class="card-color"></div>
     </div>
   </div>
 </section>

@@ -9,8 +9,8 @@ import { addFavorite, removeFavorite } from "../../redux/actions/favorite.action
 import { selectFavorites } from "../../redux/selectors/favorite.selectors";
 import { AppState } from "../../redux/state.models";
 import { CardComponent } from "../../shared/components/card/card.component";
+import { SearchItemDirective } from "../directives/search-item.directive";
 import { SearchItem } from "../models/search-item.model";
-import { SearchItemDirective } from "./search-item.directive";
 
 @Component({
     selector: "app-search-item",
