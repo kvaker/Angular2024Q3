@@ -14,10 +14,12 @@ import { FavoriteItem } from "../../../favorite/models/favorite.model";
 })
 export class CardComponent {
     @Input() favorite!: FavoriteItem;
-    @Input() isFavorite: boolean = false;
-    @Output() toggleFavorite = new EventEmitter<string>();
+    @Output() toggleFavorite = new EventEmitter<FavoriteItem>();
 
-    onToggleFavorite() {
-        this.toggleFavorite.emit(this.favorite.id);
+    onToggleFavorite(): void {
+        this.toggleFavorite.emit(this.favorite);
+    }
+    get isFavorite(): boolean {
+        return this.favorite.isFavorite;
     }
 }

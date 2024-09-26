@@ -32,26 +32,11 @@ export class FavoritePageComponent implements OnInit {
         this.store.dispatch(removeFavorite({ id }));
     }
 
-    toggleFavorite(id: string): void {
-        const isFavorite = FavoritePageComponent.isFavorite();
-        if (isFavorite) {
-            this.store.dispatch(removeFavorite({ id }));
+    toggleFavorite(item: FavoriteItem): void {
+        if (item.isFavorite) {
+            this.store.dispatch(removeFavorite({ id: item.id }));
         } else {
-            const favoriteItem: FavoriteItem = FavoritePageComponent.getFavoriteItemById(id);
-            this.store.dispatch(addFavorite({ favorite: favoriteItem }));
+            this.store.dispatch(addFavorite({ favorite: item }));
         }
-    }
-
-    private static isFavorite(): boolean {
-        return false;
-    }
-    private static getFavoriteItemById(id: string): FavoriteItem {
-        return {
-            id,
-            title: "Sample Title",
-            description: "Sample Description",
-            thumbnailUrl: "sample-url",
-            isFavorite: false,
-        } as FavoriteItem;
     }
 }
