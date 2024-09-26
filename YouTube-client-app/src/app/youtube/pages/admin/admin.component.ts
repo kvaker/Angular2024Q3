@@ -26,6 +26,7 @@ import { CustomCardService } from "../../../search/services/custom-card.service"
 export class AdminComponent implements OnInit {
     adminForm: FormGroup = new FormGroup({});
     customCards: CustomCard[] = [];
+    imagePreview: string | ArrayBuffer | null = null;
 
     constructor(
         private formBuilder: FormBuilder,
@@ -53,13 +54,28 @@ export class AdminComponent implements OnInit {
         });
     }
 
+    onFileSelected(event: Event): void {
+        const input = event.target as HTMLInputElement;
+        if (input.files && input.files.length > 0) {
+            const file = input.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const result = e.target?.result;
+                if (result !== undefined) {
+                    this.imagePreview = result as string | ArrayBuffer;
+                    this.adminForm.get("imageLink")?.setValue(this.imagePreview);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+    }
     createCustomCard(): CustomCard {
         const formValue = this.adminForm.value;
         return {
             id: AdminComponent.generateUniqueId(),
             title: formValue.title,
             description: formValue.description,
-            imageLink: formValue.imageLink,
+            imageLink: this.imagePreview as string,
             videoLink: formValue.videoLink,
             creationDate: formValue.creationDate,
             tags: formValue.tags.map((tagGroup: { tag: string }) => tagGroup.tag),

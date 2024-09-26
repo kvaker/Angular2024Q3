@@ -44,6 +44,22 @@ $middle-gray: #efefef;
   line-height: 16px;
 }
 
+.file-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.file-input-label {
+  color: #007BFF;
+  font-weight: bold;
+  text-align: center;
+}
+
 .button-container {
   display: flex;
   justify-content: right;
