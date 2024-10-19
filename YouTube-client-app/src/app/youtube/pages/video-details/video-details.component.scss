@@ -1,0 +1,109 @@
+.video-details {
+  display: flex;
+  position: relative;
+  width: 1200px;
+  height: 461px;
+  margin: 124px auto 100px;
+  filter: drop-shadow(5px 10px 10px rgba(47, 128, 237, 0.25));
+
+  .video {
+    width: 729px;
+    height: 100%;
+    background-size: cover;
+    filter: drop-shadow(5px 10px 20px rgba(51, 51, 51, 0.25));
+    border-radius: 0 0 0 5px;
+  }
+
+  .right-side {
+    width: 436px;
+    height: 100%;
+    background: #e5e5e5;
+    box-shadow: 5px 5px 20px rgba(51, 51, 51, 0.25);
+    border-radius: 0 5px 5px 0;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 0;
+  }
+
+  .title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    color: #000;
+    margin-bottom: 10px;
+  }
+
+  .date {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: right;
+    color: #828282;
+  }
+
+  .description {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000;
+    margin: 10px 0;
+  }
+
+  .statistics {
+    display: flex;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #000;
+    z-index: 100;
+
+    .viewed,
+    .like,
+    .dislike,
+    .comments {
+      display: flex;
+      align-items: center;
+      margin-right: 17px;
+    }
+  }
+
+  .back-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(-2px 2px 4px rgba(47, 128, 237, 0.25));
+    border-radius: 5px 5px 0 0;
+    background: #2f80ed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .icon {
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-right: 8px solid #f2f2f2;
+    }
+  }
+
+  .bottom-bar {
+    position: absolute;
+    width: 436px;
+    height: 5px;
+    bottom: 0;
+    left: 729px;
+    background: #2f80ed;
+    border-radius: 0 0 5px 0;
+  }
+}

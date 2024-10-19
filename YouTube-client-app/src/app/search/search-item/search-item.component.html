@@ -1,0 +1,42 @@
+<section class="card-board">
+  <div class="card-container" *ngIf="searchItem">
+    <div class="card">
+      <img [src]="searchItem.snippet.thumbnails.high.url" [alt]="searchItem.snippet.title" />
+      <div class="card-content">
+        <div class="card-statistics">
+          <div class="icon-viewed">
+            <img src="assets/svg/viewed.svg" alt="Viewed Icon" style="width: 12px; height: 12px" />
+          </div>
+          <div class="text-viewed">{{ searchItem.statistics.viewCount || "N/A" }}</div>
+          <div class="icon-liked">
+            <img src="assets/svg/liked.svg" alt="Liked Icon" style="width: 12px; height: 12px" />
+          </div>
+          <div class="text-liked">{{ searchItem.statistics.likeCount || "N/A" }}</div>
+          <div class="icon-disliked">
+            <img
+              src="assets/svg/dislike.svg"
+              alt="Disliked Icon"
+              style="width: 12px; height: 12px"
+            />
+          </div>
+          <div class="text-disliked">{{ searchItem.statistics.dislikeCount || "N/A" }}</div>
+          <div class="icon-comments">
+            <img
+              src="assets/svg/Group 9.svg"
+              alt="Comments Icon"
+              style="width: 12px; height: 12px"
+            />
+          </div>
+          <div class="text-comments">{{ searchItem.statistics.commentCount || "N/A" }}</div>
+        </div>
+        <div class="card-title">{{ searchItem.snippet.title }}</div>
+        <div class="card-description">{{ searchItem.snippet.description }}</div>
+        <button (click)="toggleFavorite(searchItem!)">
+          <i [class.filled]="isFavorite" class="fa fa-heart"></i>
+        </button>
+        <button class="card-button" [routerLink]="['/video', searchItem.id]">more...</button>
+      </div>
+      <div appSearchItem [publishedDate]="searchItem.snippet.publishedAt" class="card-color"></div>
+    </div>
+  </div>
+</section>

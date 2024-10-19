@@ -1,0 +1,43 @@
+<header>
+  <div class="header-nav">
+    <div class="header-item">
+      <div class="container-search">
+        <div class="logo">
+          <img src="assets/svg/logo.svg" alt="Logo" style="width: 50px; height: 50px" />
+        </div>
+        <form (submit)="onSearch($event)">
+          <input type="text" placeholder="Search" (input)="onSearch($event)" />
+          <button class="options" (click)="toggleHeaderBottom()">
+            <img src="assets/svg/options.svg" alt="Options" style="width: 16px; height: 16px" />
+          </button>
+        </form>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <button (click)="navigateToFavorites()"><i class="fa fa-heart"></i> Favorites</button>
+      </ul>
+    </nav>
+    <button class="sort-button" *ngIf="!isLoggedIn" (click)="router.navigate(['/login'])">
+      Login
+    </button>
+    <button class="sort-button" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+    <div class="account">
+      {{ isLoggedIn ? userName || "Your Name" : "Your Name" }}
+      <img src="assets/svg/Subtract.svg" alt="Account" style="width: 24px; height: 24px" />
+    </div>
+  </div>
+  <div class="header-bottom" *ngIf="showBottomHeader">
+    <div class="container-sort">
+      <div class="sort-buttons">
+        <p class="sort-title">Sorting by:</p>
+        <div class="sort-button" (click)="setSortByField('date')">date</div>
+        <div class="sort-button" (click)="setSortByField('count-of-views')">count of views</div>
+        <div class="sort-button" (click)="setSortByField('word-or-sentence')">
+          by word or sentence
+        </div>
+        <input type="text" class="word-sentence" placeholder="" (input)="onSearch($event)" />
+      </div>
+    </div>
+  </div>
+</header>

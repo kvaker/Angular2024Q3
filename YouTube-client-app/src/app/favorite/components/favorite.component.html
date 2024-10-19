@@ -1,0 +1,8 @@
+<app-header></app-header>
+<div *ngIf="favorites$ | async as favorites">
+  <app-card
+    *ngFor="let favorite of favorites"
+    [favorite]="favorite"
+    (toggleFavorite)="toggleFavorite(favorite)"
+  ></app-card>
+</div>

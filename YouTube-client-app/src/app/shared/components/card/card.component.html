@@ -1,0 +1,11 @@
+<div class="card">
+  <img [src]="favorite.thumbnailUrl" [alt]="favorite.title" />
+  <div class="card-content">
+    <h2>{{ favorite.title }}</h2>
+    <p>{{ favorite.description }}</p>
+    <button (click)="onToggleFavorite()">
+      <i [class.filled]="isFavorite" class="fa fa-heart"></i>
+    </button>
+    <button class="card-button">More...</button>
+  </div>
+</div>

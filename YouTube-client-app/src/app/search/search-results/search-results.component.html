@@ -1,0 +1,48 @@
+<app-header
+  (sortByChanged)="onSortByChanged($event)"
+  (searchTermChanged)="onSearch($event)"
+></app-header>
+
+<main>
+  <div *ngIf="paginatedResults$ | async as paginatedResults; else loading">
+    <div *ngIf="paginatedResults && paginatedResults.length; else noResults">
+      <section class="card-board">
+        <div class="card-container">
+          <div *ngFor="let card of customCards$ | async" class="card">
+            <img *ngIf="card.imageLink" [src]="card.imageLink" alt="{{ card.title }}" class="card-image"/>
+            <div class="card-content">
+              <div class="card-title">{{ card.title }}</div>
+              <div class="card-description">{{ card.description }}</div>
+              <p>
+                Video: <a [href]="card.videoLink">{{ card.videoLink }}</a>
+              </p>
+              <div class="card-description">Creation Date: {{ card.creationDate }}</div>
+              <div class="card-description">Tags: {{ card.tags.join(", ") }}</div>
+              <button (click)="onDelete(card.id)">Delete</button>
+              <div appSearchItem class="card-color"></div>
+            </div>
+          </div>
+          <app-search-item
+            *ngFor="let searchItem of paginatedResults"
+            [searchItem]="searchItem"
+            class="card"
+          ></app-search-item>
+        </div>
+      </section>
+      <div class="pagination-controls">
+        <button (click)="prevPage()" [disabled]="(currentPage$ | async) === 1">Previous</button>
+        <span>Page {{ currentPage$ | async }} of {{ totalPages }}</span>
+        <button (click)="nextPage()" [disabled]="(currentPage$ | async) === totalPages">
+          Next
+        </button>
+      </div>
+    </div>
+    <ng-template #noResults>
+      <p>No results found.</p>
+    </ng-template>
+  </div>
+
+  <ng-template #loading>
+    <p>Loading results...</p>
+  </ng-template>
+</main>

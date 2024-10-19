@@ -1,0 +1,90 @@
+$primary-color: #2f80ed;
+$secondary-color: #4f4f4f;
+$light-gray: #e5e5e5;
+$middle-gray: #efefef;
+
+.admin-container {
+  position: absolute;
+  width: 344px;
+  height: auto;
+  left: 50%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  background: $light-gray;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.text {
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-input {
+  width: 92%;
+  height: 40px;
+  margin-bottom: 20px;
+  margin-right: 26px;
+  border: 1px solid $light-gray;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-family: "Roboto";
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.file-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.file-input-label {
+  color: #007BFF;
+  font-weight: bold;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: right;
+}
+
+.button {
+  width: 124px;
+  height: 40px;
+  margin-left: 14px;
+  background: $primary-color;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background: darken($primary-color, 10%);
+}
+
+.error {
+  border: 1px solid red;
+}

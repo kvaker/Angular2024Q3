@@ -1,0 +1,32 @@
+.not-found-body {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  overflow: auto;
+  z-index: 0;
+}
+.not-found-item {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.not-found-logo {
+  width: 99.72px;
+  height: 100px;
+  margin-right: 27px;
+}
+.not-found-text {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  color: #828282;
+}
